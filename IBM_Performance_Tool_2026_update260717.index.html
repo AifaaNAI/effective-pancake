@@ -2043,6 +2043,11 @@ function clearAll() {
     if (el.type==='radio') el.checked=false;
     else el.value='';
   });
+  // Clear in-memory file store and re-render empty lists
+  docFiles = {};
+  DOC_FILE_SLOTS.forEach(function(listId){ renderDocList(listId); });
+  var docSlots = ['ei','0','1','lh','2','3','4','5'];
+  docSlots.forEach(function(s){ docRefreshView(s); });
   // Reset goal row views
   for (var i = 1; i <= 5; i++) gbkRefreshView(i);
   document.getElementById('rpt').classList.remove('vis');
@@ -3201,8 +3206,125 @@ function showDebug() {
 }
 
 // ── Gather Documentation ────────────────────────────────────────
-// In-memory store: docFiles[slotId] = Array of File objects
+// In-memory store: docFiles[slotId] = Array of File-like objects
 var docFiles = {};
+
+// ── File persistence helpers ────────────────────────────────────
+// Serialise all files in one slot to localStorage as a JSON array of
+// {name, type, size, lastModified, dataUrl} objects.
+// Large files (>3.5 MB each) are skipped with a warning toast.
+var DOC_FILE_SLOTS = ['df0','df1','df2','df3','df4','df5'];
+var FILE_SIZE_LIMIT = 3.5 * 1024 * 1024; // 3.5 MB per file
+
+function saveDocFiles(listId) {
+  if (!PFX || PFX === 'ibm_perf_2026_') return; // no active session
+  var files = docFiles[listId] || [];
+  var storageKey = PFX + 'docfiles_' + listId;
+
+  if (files.length === 0) {
+    localStorage.removeItem(storageKey);
+    return;
+  }
+
+  var pending = files.length;
+  var results = new Array(files.length);
+  var skipped = 0;
+
+  files.forEach(function(f, i) {
+    // Files restored from localStorage already have a dataUrl attached
+    if (f._dataUrl) {
+      results[i] = { name: f.name, type: f.type, size: f.size,
+                     lastModified: f.lastModified, dataUrl: f._dataUrl };
+      if (--pending === 0) writeDocFilesToStorage(storageKey, results, skipped);
+      return;
+    }
+    if (f.size > FILE_SIZE_LIMIT) {
+      skipped++;
+      results[i] = null;
+      if (--pending === 0) writeDocFilesToStorage(storageKey, results, skipped);
+      return;
+    }
+    var reader = new FileReader();
+    reader.onload = (function(idx, file) {
+      return function(e) {
+        results[idx] = { name: file.name, type: file.type, size: file.size,
+                         lastModified: file.lastModified, dataUrl: e.target.result };
+        if (--pending === 0) writeDocFilesToStorage(storageKey, results, skipped);
+      };
+    })(i, f);
+    reader.onerror = (function(idx) {
+      return function() {
+        results[idx] = null;
+        if (--pending === 0) writeDocFilesToStorage(storageKey, results, skipped);
+      };
+    })(i);
+    reader.readAsDataURL(f);
+  });
+}
+
+function writeDocFilesToStorage(storageKey, results, skipped) {
+  var valid = results.filter(function(r) { return r !== null; });
+  try {
+    localStorage.setItem(storageKey, JSON.stringify(valid));
+  } catch(e) {
+    // QuotaExceededError — storage full; clear this slot's entry
+    localStorage.removeItem(storageKey);
+    toast('File too large to save in browser storage. Use Export My Data to back up.', 'warn');
+  }
+  if (skipped > 0) {
+    toast(skipped + ' file' + (skipped > 1 ? 's' : '') + ' over 3.5 MB — not saved (too large for browser storage).', 'warn');
+  }
+}
+
+// Restore all file slots from localStorage for the current user.
+// Creates File-like plain objects that carry _dataUrl so the app can
+// re-read them for Analyse & Populate without re-uploading.
+function restoreDocFiles() {
+  DOC_FILE_SLOTS.forEach(function(listId) {
+    var storageKey = PFX + 'docfiles_' + listId;
+    var raw = localStorage.getItem(storageKey);
+    if (!raw) return;
+    try {
+      var saved = JSON.parse(raw);
+      if (!Array.isArray(saved) || saved.length === 0) return;
+      if (!docFiles[listId]) docFiles[listId] = [];
+      saved.forEach(function(meta) {
+        if (!meta || !meta.dataUrl || !meta.name) return;
+        // Build a File-like object. We keep _dataUrl so saveDocFiles can
+        // re-serialise it without re-reading via FileReader.
+        var blob = dataUrlToBlob(meta.dataUrl);
+        var fileLike = new File([blob], meta.name, {
+          type: meta.type || '',
+          lastModified: meta.lastModified || Date.now()
+        });
+        fileLike._dataUrl = meta.dataUrl; // attach for re-serialisation
+        docFiles[listId].push(fileLike);
+      });
+      renderDocList(listId);
+    } catch(e) { /* corrupt entry — ignore */ }
+  });
+
+  // Refresh view strips and tab dot
+  var slotMap = { 'df0':'0','df1':'1','df2':'2','df3':'3','df4':'4','df5':'5' };
+  DOC_FILE_SLOTS.forEach(function(listId) {
+    if (slotMap[listId]) docRefreshView(slotMap[listId]);
+  });
+  var d7 = document.getElementById('d7');
+  if (d7) {
+    var hasAny = Object.keys(docFiles).some(function(k){ return docFiles[k] && docFiles[k].length > 0; });
+    d7.classList.toggle('go', hasAny);
+  }
+}
+
+function dataUrlToBlob(dataUrl) {
+  var parts = dataUrl.split(',');
+  var mime  = (parts[0].match(/:(.*?);/) || ['',''])[1];
+  var bstr  = atob(parts[1] || '');
+  var n = bstr.length;
+  var u8arr = new Uint8Array(n);
+  for (var i = 0; i < n; i++) u8arr[i] = bstr.charCodeAt(i);
+  return new Blob([u8arr], { type: mime });
+}
 
 function docPick(evt, listId, zoneId) {
   var files = Array.prototype.slice.call(evt.target.files);
@@ -3221,6 +3343,7 @@ function addDocFiles(listId, zoneId, files) {
   if (!docFiles[listId]) docFiles[listId] = [];
   files.forEach(function(f) { docFiles[listId].push(f); });
   renderDocList(listId);
+  saveDocFiles(listId); // persist to localStorage
   // Refresh view strip for the slot
   var slotMap = { 'df0':'0','df1':'1','df2':'2','df3':'3','df4':'4','df5':'5' };
   if (slotMap[listId]) docRefreshView(slotMap[listId]);
@@ -3235,6 +3358,7 @@ function addDocFiles(listId, zoneId, files) {
 function removeDocFile(listId, idx) {
   if (docFiles[listId]) docFiles[listId].splice(idx, 1);
   renderDocList(listId);
+  saveDocFiles(listId); // update persisted list after removal
 }
 
 function renderDocList(listId) {
@@ -3415,8 +3539,9 @@ function startSession(email) {
   buildGoals(); buildRec(); buildFb(); buildLrn();
   buildOlkChips();
   bindAS();
-  initDocCards();   // lock fields first — then restore fills values into locked fields
-  restoreAll();     // restoreAll runs after locking so values are always written
+  initDocCards();   // unlock fields first
+  restoreAll();     // restore text/select/radio values
+  restoreDocFiles(); // restore uploaded files from localStorage
   document.querySelectorAll('.ms').forEach(function(s){ s.classList.remove('vis'); });
   document.getElementById('moe').style.display = 'none';
   updGoalMonitor();
@@ -3427,6 +3552,8 @@ function doSignOut() {
   localStorage.removeItem(SESSION_KEY);
   // Reset PFX so no stale writes happen
   PFX = 'ibm_perf_2026_';
+  // Clear in-memory file store so files don't leak to the next login
+  docFiles = {};
   document.getElementById('app').classList.remove('visible');
   document.getElementById('login-screen').classList.remove('hidden');
   document.getElementById('login-email').value = '';
