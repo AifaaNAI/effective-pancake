@@ -3176,10 +3176,16 @@ function parseFwdEmail() {
 
 // ── Init ───────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function() {
-  // Always clear the session on page load/refresh so the user must log in each time.
-  localStorage.removeItem('ibm_perf_2026_session_email');
-  document.getElementById('login-screen').classList.remove('hidden');
-  setTimeout(function(){ document.getElementById('login-email').focus(); }, 100);
+  // Restore session if the user was already logged in before the refresh.
+  var savedEmail = localStorage.getItem('ibm_perf_2026_session_email');
+  if (savedEmail && /^[^\s@]+@ibm\.com$/.test(savedEmail)) {
+    // Pre-fill the email field in case they sign out later
+    document.getElementById('login-email').value = savedEmail;
+    startSession(savedEmail);
+  } else {
+    document.getElementById('login-screen').classList.remove('hidden');
+    setTimeout(function(){ document.getElementById('login-email').focus(); }, 100);
+  }
 });
 
 // ── Debug panel ────────────────────────────────────────────────
