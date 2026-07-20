@@ -1,16 +1,16 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IBM Performance Tool 2026 ┬╖ v17Jul</title>
+<title>IBM Performance Tool 2026 · v17Jul</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
 /* IBM Plex Sans (300/400/500/600/700) + IBM Plex Mono (400/600) */
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap');
 
-/* ΓöÇΓöÇ RESET ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── RESET ───────────────────────────────────────────────────── */
 *,
 *::before,
 *::after {
@@ -19,7 +19,7 @@
   padding: 0;
 }
 
-/* ΓöÇΓöÇ DESIGN TOKENS ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── DESIGN TOKENS ──────────────────────────────────────────── */
 :root {
   /* Blue ramp */
   --blue-deep:   #3b5bdb;
@@ -64,7 +64,7 @@
   --sh:       0 2px 12px rgba(75, 110, 245, .10);
   --sh-hover: 0 6px 24px rgba(75, 110, 245, .18);
 
-  /* ΓöÇΓöÇ Legacy aliases kept for JS compat ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+  /* ── Legacy aliases kept for JS compat ───────────── */
   --ibm-blue:   #4c6ef5;
   --ibm-blue-h: #3b5bdb;
   --ibm-dark:   #1a1b2e;
@@ -83,7 +83,7 @@
 }
 body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--surface);color:var(--text);font-size:14px;line-height:1.6;min-height:100vh}
 
-/* ΓöÇΓöÇ HEADER ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── HEADER ─────────────────────────────────────────────────── */
 #hdr{background:linear-gradient(135deg,#1a1b2e 0%,#2d2f52 100%);color:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(75,110,245,.25)}
 .hi{max-width:920px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:14px;height:52px}
 .logo{font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:700;letter-spacing:2px;color:#fff;flex-shrink:0}
@@ -103,7 +103,7 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--surfa
 .pfill{height:100%;background:var(--accent-grad);border-radius:3px;transition:width .5s cubic-bezier(.4,0,.2,1)}
 .ppct{font-size:11px;color:#748ffc;font-weight:700;flex-shrink:0}
 
-/* ΓöÇΓöÇ NAV ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── NAV ────────────────────────────────────────────────────── */
 #tnav{background:#fff;border-bottom:2px solid var(--border-soft);box-shadow:0 2px 8px rgba(75,110,245,.06)}
 .tni{max-width:920px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:thin;scrollbar-color:rgba(75,110,245,.3) transparent}
 .tni::-webkit-scrollbar{height:3px}
@@ -114,13 +114,13 @@ body{font-family:'IBM Plex Sans',-apple-system,sans-serif;background:var(--surfa
 .dot{width:7px;height:7px;border-radius:50%;background:var(--g30);transition:all .3s}
 .dot.go{background:var(--accent-grad);box-shadow:0 0 6px rgba(75,110,245,.5)}
 
-/* ΓöÇΓöÇ MAIN ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── MAIN ───────────────────────────────────────────────────── */
 main{max-width:920px;margin:0 auto;padding:28px 20px 80px}
 .tp{display:none;animation:fi .25s ease}
 .tp.on{display:block}
 @keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
-/* ΓöÇΓöÇ BANNER ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── BANNER ─────────────────────────────────────────────────── */
 .ban{background:var(--blue-pale);border-left:4px solid var(--blue-mid);padding:14px 18px;border-radius:0 var(--r) var(--r) 0;margin-bottom:24px;font-size:13px;color:var(--blue-deep)}
 .ban strong{display:block;margin-bottom:4px;font-size:14px;color:var(--blue-deep)}
 .tt input[type=checkbox]{display:none}
@@ -129,7 +129,7 @@ main{max-width:920px;margin:0 auto;padding:28px 20px 80px}
 .tc{display:none;margin-top:10px;font-size:12px;color:var(--muted);line-height:1.8;background:rgba(75,110,245,.05);padding:10px 14px;border-radius:8px}
 .tt input:checked~.tc{display:block}
 
-/* ΓöÇΓöÇ CARD ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── CARD ───────────────────────────────────────────────────── */
 .card{background:var(--card);border:1.5px solid var(--border-soft);border-radius:var(--r-lg);margin-bottom:14px;box-shadow:var(--sh);transition:box-shadow .2s,transform .2s}
 .card:hover{box-shadow:var(--sh-hover);transform:translateY(-1px)}
 .ch{display:flex;align-items:center;padding:14px 18px;cursor:pointer;user-select:none;gap:12px;border-bottom:1.5px solid transparent;transition:background .15s;border-radius:var(--r-lg) var(--r-lg) 0 0}
@@ -142,7 +142,7 @@ main{max-width:920px;margin:0 auto;padding:28px 20px 80px}
 .cb{padding:18px;display:none}
 .cb.op{display:block}
 
-/* ΓöÇΓöÇ FORM ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── FORM ───────────────────────────────────────────────────── */
 .fg{margin-bottom:18px}
 .fr{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media(max-width:600px){.fr{grid-template-columns:1fr}}
@@ -160,7 +160,7 @@ input:hover,textarea:hover,select:hover{border-color:var(--blue-soft)}
 textarea{resize:vertical;min-height:80px}
 .tall{min-height:150px}
 
-/* ΓöÇΓöÇ SLIDER ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── SLIDER ─────────────────────────────────────────────────── */
 .sw{margin-bottom:18px}
 .shr{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .spct{font-size:22px;font-weight:700;background:var(--accent-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-family:'IBM Plex Mono',monospace}
@@ -171,7 +171,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .pbv{height:8px;background:var(--border);border-radius:4px;margin-top:8px;overflow:hidden}
 .pbf{height:100%;background:var(--accent-grad);border-radius:4px;transition:width .3s cubic-bezier(.4,0,.2,1)}
 
-/* ΓöÇΓöÇ RATING PILLS ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── RATING PILLS ───────────────────────────────────────────── */
 .rg{display:flex;gap:10px;flex-wrap:wrap}
 .rp input[type=radio]{display:none}
 .rp label{display:inline-block;padding:6px 18px;border-radius:24px;border:2px solid var(--border);font-size:12px;font-weight:600;cursor:pointer;text-transform:none;letter-spacing:0;color:var(--muted);transition:all .2s;user-select:none}
@@ -181,13 +181,13 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .rp.core input:checked+label{background:var(--accent-grad)}
 .rp.low input:checked+label{background:linear-gradient(135deg,#e03131,#ff6b6b)}
 
-/* ΓöÇΓöÇ MANAGER SECTION ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── MANAGER SECTION ────────────────────────────────────────── */
 .ms{background:var(--purple-pale);border:1.5px solid #d4bbff;border-radius:var(--r);padding:18px;margin-top:18px;display:none}
 .ms.vis{display:block}
 .mst{font-size:11px;font-weight:700;color:var(--purple-deep);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
 .mbadge{background:var(--accent-grad);color:#fff;font-size:9px;padding:3px 8px;border-radius:10px;font-weight:700}
 
-/* ΓöÇΓöÇ STAT BOXES ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── STAT BOXES ─────────────────────────────────────────────── */
 .sbs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
 @media(max-width:500px){.sbs{grid-template-columns:1fr}}
 .sb{background:var(--card);border:1.5px solid var(--border-soft);border-radius:var(--r-lg);padding:22px 16px;text-align:center;box-shadow:var(--sh);transition:all .2s;cursor:default}
@@ -195,7 +195,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .sbn input{font-size:38px;font-weight:700;background:var(--accent-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-family:'IBM Plex Mono',monospace;text-align:center;border:none;outline:none;width:100%;padding:0;box-shadow:none;background-color:transparent}
 .sbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-top:5px}
 
-/* ΓöÇΓöÇ BUTTONS ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── BUTTONS ────────────────────────────────────────────────── */
 .btn{display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:24px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .2s;letter-spacing:.2px}
 .bp{background:var(--accent-grad);color:#fff;box-shadow:0 3px 12px rgba(76,110,245,.3)}
 .bp:hover{background:var(--accent-grad-h);box-shadow:0 6px 18px rgba(76,110,245,.4);transform:translateY(-1px)}
@@ -210,12 +210,12 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .br{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;align-items:center}
 .tfoot{display:flex;justify-content:flex-end;gap:10px;margin-top:28px;padding-top:18px;border-top:1.5px solid var(--border-soft)}
 
-/* ΓöÇΓöÇ ENTRY CARDS ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── ENTRY CARDS ────────────────────────────────────────────── */
 .ec{background:var(--card);border:1.5px solid var(--border-soft);border-radius:var(--r-lg);padding:18px;margin-bottom:12px;box-shadow:var(--sh);transition:box-shadow .2s,transform .2s}
 .ec:hover{box-shadow:var(--sh-hover);transform:translateY(-1px)}
 .en{font-size:11px;font-weight:700;background:var(--accent-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-transform:uppercase;letter-spacing:.7px;margin-bottom:14px}
 
-/* ΓöÇΓöÇ SUMMARY ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── SUMMARY ────────────────────────────────────────────────── */
 .sn{background:var(--card);border:1.5px solid var(--border-soft);border-radius:var(--r-lg);padding:22px;margin-bottom:18px;box-shadow:var(--sh)}
 .mos{background:linear-gradient(135deg,#1e1b3a 0%,#2a2550 100%);border:1.5px solid rgba(121,80,242,.35);border-radius:var(--r-lg);padding:22px;margin-top:24px}
 .mot{color:#c4b5fd;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:18px;display:flex;align-items:center;gap:8px}
@@ -230,13 +230,13 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .rco.core input:checked+label{background:var(--accent-grad);border-color:transparent;color:#fff}
 .rco.low input:checked+label{background:linear-gradient(135deg,#e03131,#ff6b6b);border-color:transparent;color:#fff}
 
-/* ΓöÇΓöÇ TOAST ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── TOAST ──────────────────────────────────────────────────── */
 #toast{position:fixed;bottom:28px;right:28px;background:linear-gradient(135deg,#1a1b2e,#2d2f52);color:#e8ecff;padding:13px 22px;border-radius:12px;font-size:13px;font-weight:600;z-index:9999;opacity:0;transform:translateY(14px);transition:all .3s cubic-bezier(.4,0,.2,1);pointer-events:none;max-width:340px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
 #toast.show{opacity:1;transform:none}
 #toast.ok{border-left:4px solid #51cf66}
 #toast.warn{border-left:4px solid #ffd43b}
 
-/* ΓöÇΓöÇ REPORT ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── REPORT ─────────────────────────────────────────────────── */
 #rpt{display:none;background:var(--card);border:2px solid var(--blue-pastel);border-radius:var(--r-lg);padding:36px;margin-top:28px;box-shadow:var(--sh)}
 #rpt.vis{display:block;animation:fi .3s ease}
 .rh{border-bottom:3px solid transparent;border-image:var(--accent-grad) 1;padding-bottom:22px;margin-bottom:26px}
@@ -258,12 +258,12 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .ord{font-size:28px;font-weight:700;margin-bottom:8px}
 .o-top{color:#69db7c}.o-core{color:#748ffc}.o-low{color:#ff8787}
 
-/* ΓöÇΓöÇ TEAM PANEL ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── TEAM PANEL ─────────────────────────────────────────────── */
 #tpanel{display:none;background:linear-gradient(135deg,#1e1b3a,#2a2550);border:1.5px solid rgba(121,80,242,.35);border-radius:var(--r-lg);padding:22px;margin-bottom:22px}
 #tpanel.vis{display:block;animation:fi .25s ease}
 .tptitle{color:#c4b5fd;font-weight:700;font-size:14px;margin-bottom:14px}
 
-/* ΓöÇΓöÇ TEAM SUMMARY TAB ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── TEAM SUMMARY TAB ────────────────────────────────────────── */
 .tb-mgr-only{display:none}
 .team-upload-zone{border:2px dashed rgba(121,80,242,.45);border-radius:var(--r-lg);padding:22px 16px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;margin-bottom:16px}
 .team-upload-zone:hover,.team-upload-zone.drag{border-color:#9775fa;background:rgba(121,80,242,.07)}
@@ -286,7 +286,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .team-tbl .cat-na{color:var(--muted);font-style:italic;font-size:11px}
 .team-empty{text-align:center;padding:40px 16px;color:var(--muted);font-size:13px}
 
-/* ΓöÇΓöÇ PRINT ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── PRINT ──────────────────────────────────────────────────── */
 @media print{
   body{background:#fff;font-size:12px}
   #hdr,#pbw,#tnav,.tfoot,.br,#toast,.ban,.tp:not(#t4),.no-print{display:none!important}
@@ -302,7 +302,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 ::-webkit-scrollbar-thumb{background:var(--blue-pastel);border-radius:3px}
 ::-webkit-scrollbar-thumb:hover{background:var(--blue-soft)}
 
-/* ΓöÇΓöÇ LOGIN SCREEN ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── LOGIN SCREEN ────────────────────────────────────────────── */
 #login-screen{
   position:fixed;inset:0;z-index:9000;
   background:linear-gradient(135deg,#0f1021 0%,#1a1b2e 45%,#2d1f52 100%);
@@ -360,14 +360,14 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 #app{display:none}
 #app.visible{display:block}
 
-/* ΓöÇΓöÇ GOAL CARD BADGES ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── GOAL CARD BADGES ───────────────────────────────────────── */
 .gcatbadge{display:none;font-size:10px;font-weight:700;background:var(--blue-pastel);color:var(--blue-deep);padding:2px 9px;border-radius:12px;letter-spacing:.3px;vertical-align:middle;margin-left:5px}
 .gstbadge{display:none;font-size:10px;font-weight:700;padding:2px 9px;border-radius:12px;letter-spacing:.3px;flex-shrink:0;align-self:center}
 .gst-done{background:var(--green-lt);color:var(--green)}
 .gst-prog{background:#fff3bf;color:#8a6200}
 .gst-none{background:var(--blue-pale);color:var(--muted)}
 
-/* ΓöÇΓöÇ GOAL MONITOR TABLE ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── GOAL MONITOR TABLE ─────────────────────────────────────── */
 .gmon{background:var(--card);border:1.5px solid var(--border-soft);border-radius:var(--r-lg);padding:20px 20px 16px;margin-bottom:22px;box-shadow:var(--sh)}
 .gmon-tbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
 .gmon-tbl th,.gmon-tbl td{border:1px solid var(--border);padding:7px 10px;vertical-align:top;line-height:1.45}
@@ -377,7 +377,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .gmon-tbl td.gmon-cat-cell{color:#c0392b;font-weight:500}
 .gmon-section-hdr{font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px}
 .gmon-breakdown-hdr{font-size:13px;font-weight:700;color:var(--text);text-decoration:underline;margin:0 0 10px}
-/* ΓöÇΓöÇ BREAKDOWN TABLE ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── BREAKDOWN TABLE ────────────────────────────────────────── */
 .gbk-tbl{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:6px}
 .gbk-tbl th,.gbk-tbl td{border:1px solid var(--border);padding:8px 10px;vertical-align:top;line-height:1.5}
 .gbk-tbl th{background:var(--surface);font-weight:700;font-size:12px;color:var(--text)}
@@ -414,7 +414,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .gbk-analyse-bar-fill{height:100%;background:var(--accent-grad);border-radius:3px;transition:width .4s}
 /* source-selector pill toggle */
 
-/* ΓöÇΓöÇ OUTLOOK INTEGRATION ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── OUTLOOK INTEGRATION ────────────────────────────────────── */
 .olk-hero{background:linear-gradient(135deg,#0078d4 0%,#106ebe 100%);border-radius:var(--r-lg);padding:22px 24px;color:#fff;margin-bottom:22px;display:flex;align-items:center;gap:18px}
 .olk-logo{font-size:36px;flex-shrink:0}
 .olk-hero-text .olk-t{font-size:16px;font-weight:700;margin-bottom:4px}
@@ -462,7 +462,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .olk-copilot-tip{background:linear-gradient(135deg,#1e1b3a,#2a2550);border-radius:var(--r);padding:16px 18px;margin-bottom:22px;color:#c4b5fd;font-size:13px;line-height:1.7}
 .olk-copilot-tip strong{color:#e8ecff}
 
-/* ΓöÇΓöÇ EXCEL UPLOAD ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── EXCEL UPLOAD ───────────────────────────────────────────── */
 .xls-zone{border:2px dashed var(--border);border-radius:var(--r);padding:24px 16px;text-align:center;cursor:pointer;transition:all .25s;margin-top:14px}
 .xls-zone:hover,.xls-zone.drag{border-color:var(--green);background:#f0fff4;transform:scale(1.01)}
 .xls-zone input[type=file]{display:none}
@@ -477,14 +477,14 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .xls-result.vis{display:block}
 .xls-result strong{display:block;margin-bottom:4px;font-size:13px}
 
-/* ΓöÇΓöÇ PDF UPLOAD ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── PDF UPLOAD ─────────────────────────────────────────────── */
 .pdf-zone{border:2px dashed var(--border);border-radius:var(--r);padding:24px 16px;text-align:center;cursor:pointer;transition:all .25s;margin-top:14px}
 .pdf-zone:hover,.pdf-zone.drag{border-color:var(--blue-mid);background:var(--blue-pale);transform:scale(1.01)}
 .pdf-zone input[type=file]{display:none}
 .pdf-zone-icon{font-size:30px;margin-bottom:8px}
 .pdf-zone-label{font-size:13px;font-weight:600;color:var(--text)}
 .pdf-zone-sub{font-size:12px;color:var(--muted);margin-top:5px}
-/* ΓöÇΓöÇ Gather Documentation ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── Gather Documentation ─────────────────────────────────── */
 .doc-row{display:flex;gap:16px;align-items:flex-start}
 .doc-left{flex:1;min-width:0}
 .doc-drop{display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;width:160px;border:2px dashed var(--border);border-radius:var(--r);padding:16px 10px;text-align:center;cursor:pointer;transition:all .2s;min-height:90px}
@@ -499,7 +499,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .doc-frm:hover{color:var(--red)}
 .doc-empty{font-size:12px;color:var(--g50);font-style:italic;margin-bottom:8px;display:none}
 .doc-flist:empty+.doc-empty{display:block}
-/* ΓöÇΓöÇ Doc card lock state ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ */
+/* ── Doc card lock state ─────────────────────────────────── */
 /* readonly text fields */
 #t7 input[readonly],#t7 textarea[readonly]{background:var(--g10);border-color:var(--border-soft);color:var(--text);cursor:default}
 #t7 input[readonly]:focus,#t7 textarea[readonly]:focus{box-shadow:none;border-color:var(--border-soft)}
@@ -531,7 +531,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 </head>
 <body>
 
-<!-- ΓòÉΓòÉ LOGIN SCREEN ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
+<!-- ══ LOGIN SCREEN ══════════════════════════════════════════════ -->
 <div id="login-screen">
   <div class="lbox">
     <div class="lbox-logo">I<span>B</span>M</div>
@@ -551,13 +551,14 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 
     <hr class="lbox-divider">
     <div class="lbox-note">
-      &#128274;&nbsp; Your data is saved automatically in this browser &mdash; nothing is sent to any server.<br>
-      &#128100;&nbsp; Each IBM email has its own private workspace.
+      &#128274;&nbsp; Your data is stored locally in this browser only &mdash; nothing is sent to any server.<br>
+      &#128100;&nbsp; Each IBM email has its own saved workspace that is <strong>automatically restored</strong> on every visit.<br>
+      &#128196;&nbsp; Uploaded files (Excel, PDF, etc.) are also saved and restored automatically.
     </div>
   </div>
 </div>
 
-<!-- ΓòÉΓòÉ MAIN APP (hidden until login) ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
+<!-- ══ MAIN APP (hidden until login) ════════════════════════════ -->
 <div id="app">
 
 <header id="hdr">
@@ -624,7 +625,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       <button class="gbk-analyse-btn" id="gbk-analyse-btn" onclick="analyseAndPopulate()">&#10024; Analyse &amp; Populate from Documents</button>
       <button class="gbk-analyse-btn" style="background:transparent;border:2px solid var(--blue-mid);color:var(--blue-mid);box-shadow:none;font-size:12px;padding:7px 14px" onclick="resetGoals()">&#8635; Reset Goals</button>
       <div class="gbk-analyse-progress" id="gbk-prog">
-        <span id="gbk-prog-msg">ExtractingΓÇª</span>
+        <span id="gbk-prog-msg">Extracting…</span>
         <div class="gbk-analyse-bar-wrap"><div class="gbk-analyse-bar-fill" id="gbk-prog-fill" style="width:0%"></div></div>
       </div>
       <span class="gbk-analyse-note">Reads uploaded documents from <em>Gather Documentation</em> to auto-fill the table below.</span>
@@ -698,7 +699,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 
 <!-- TAB 7: GATHER DOCUMENTATION -->
 <section class="tp on" id="t7">
-  <div class="ban"><strong>&#128194; Gather Documentation</strong> Upload supporting documents for your performance review. Files are held locally in your browser session only &mdash; nothing is sent to a server.</div>
+  <div class="ban"><strong>&#128194; Gather Documentation</strong> Upload supporting documents for your performance review. Files and all data are saved in your browser's local storage &mdash; nothing is sent to any server. Your workspace is restored automatically each time you return.</div>
 
   <!-- Page-level Save All bar -->
   <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px;padding:10px 16px;background:var(--blue-pale);border:1.5px solid var(--border-soft);border-radius:var(--r)">
@@ -746,7 +747,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
           <div class="doc-left">
             <!-- Copilot Tip -->
             <div style="background:linear-gradient(135deg,#1e1b3a,#2a2550);border-radius:var(--r);padding:14px 18px;margin-bottom:14px;color:#c4b5fd;font-size:12px;line-height:1.75">
-              <strong style="display:block;color:#e8ecff;margin-bottom:6px">&#129513; Tip ΓÇö Use this Copilot prompt in Outlook Copilot to generate your Excel file:</strong>
+              <strong style="display:block;color:#e8ecff;margin-bottom:6px">&#129513; Tip — Use this Copilot prompt in Outlook Copilot to generate your Excel file:</strong>
               <div style="background:rgba(255,255,255,.07);border-radius:6px;padding:10px 12px;color:#ddd6fe;font-size:11px;line-height:1.8;white-space:pre-wrap;word-break:break-word;font-family:'IBM Plex Mono',monospace" id="copilot-prompt-text">Summarise the evidences to support my attached 2026 goals and analyse the progress of each goal by scanning my inbox, sent items, archived files, meeting notes and my recognition for year 2026. To monitor my mid year performance. Include list of goal plan, goal category and goal descriptions from my attached 2026 goals, summary of evidences / recognition to support each goal, status of goal (not started, work in progress and completed) in a table. Export the output into excel file and the tab name is Goal Plan. In addition, Search my 2026 recognition emails from Thanks@IBM &lt;donotreply-pdel@biworldwide.com&gt;. Summarise each recognition in this format: Recognised By, Date, Award Type, and Message / Reason for Recognition. Then generate the result in Excel with one formatted recognition-form sheet and one table-view sheet and the tab name is Recognition &amp; Awards. Keep the wording professional, concise, and suitable for year-end review. Please make sure there is only 2 tabs in the excel file.</div>
               <button onclick="copyGpaPrompt(this)" style="margin-top:10px;background:rgba(255,255,255,.12);border:1px solid rgba(192,200,240,.3);color:#c4b5fd;padding:5px 14px;border-radius:16px;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s">&#128203; Copy Prompt</button>
             </div>
@@ -816,11 +817,11 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
         </div>
         <div class="cb op" id="fbpb" style="padding:16px">
           <div style="background:#f0f5ff;border:1px solid #c0d4f5;border-radius:4px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:#00539a;line-height:1.7">
-            <strong style="display:block;margin-bottom:4px">&#9889; Fastest way ΓÇö copy all at once:</strong>
+            <strong style="display:block;margin-bottom:4px">&#9889; Fastest way — copy all at once:</strong>
             1. On the SuccessFactors <strong>Feedback list page</strong>, open the <strong>first</strong> feedback detail<br>
             2. Press <strong>Ctrl+A</strong> then <strong>Ctrl+C</strong> to copy the full page<br>
-            3. Go back, open the <strong>next</strong> feedback, and press <strong>Ctrl+A ΓåÆ Ctrl+C</strong> again<br>
-            4. Paste all of them together below ΓÇö the tool will split and fill each one automatically
+            3. Go back, open the <strong>next</strong> feedback, and press <strong>Ctrl+A → Ctrl+C</strong> again<br>
+            4. Paste all of them together below — the tool will split and fill each one automatically
           </div>
           <div class="fg" style="margin-bottom:10px">
             <label for="fbpaste">Pasted Feedback Text <span style="font-weight:400;color:var(--muted)">(paste one or multiple feedback pages)</span></label>
@@ -1034,11 +1035,11 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
     <div class="fg"><label for="sna">Performance Narrative</label><textarea id="sna" style="min-height:260px" placeholder="Click Auto-Generate above to produce a management-ready performance narrative based on your goals, evidence, recognition, and feedback..." data-key="self_narrative"></textarea></div>
     <div class="str-dev-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px">
       <div class="fg" style="margin-bottom:0">
-        <label for="sst">&#9650; Key Strengths <span style="font-size:11px;font-weight:400;color:var(--muted)">(auto-analysed ΓÇö review &amp; edit)</span></label>
+        <label for="sst">&#9650; Key Strengths <span style="font-size:11px;font-weight:400;color:var(--muted)">(auto-analysed — review &amp; edit)</span></label>
         <textarea id="sst" style="min-height:120px" placeholder="Auto-analysed when you click Auto-Generate. You may also type your strengths here." data-key="self_strengths"></textarea>
       </div>
       <div class="fg" style="margin-bottom:0">
-        <label for="sde">&#9654; Development Areas <span style="font-size:11px;font-weight:400;color:var(--muted)">(auto-analysed ΓÇö review &amp; edit)</span></label>
+        <label for="sde">&#9654; Development Areas <span style="font-size:11px;font-weight:400;color:var(--muted)">(auto-analysed — review &amp; edit)</span></label>
         <textarea id="sde" style="min-height:120px" placeholder="Auto-analysed when you click Auto-Generate. You may also type development areas here." data-key="self_development"></textarea>
       </div>
     </div>
@@ -1080,7 +1081,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   <div class="card" style="margin-bottom:20px">
     <div style="padding:18px">
       <div style="font-size:14px;font-weight:600;margin-bottom:4px">&#128228; Upload Team Member JSON Files</div>
-      <div style="font-size:12px;color:var(--muted);margin-bottom:14px">Ask each team member to click <strong>Export My Data</strong> and send you their <code>.json</code> file. Upload up to 10 files here ΓÇö hold <strong>Ctrl / Cmd</strong> to select multiple files at once.</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:14px">Ask each team member to click <strong>Export My Data</strong> and send you their <code>.json</code> file. Upload up to 10 files here — hold <strong>Ctrl / Cmd</strong> to select multiple files at once.</div>
       <label class="team-upload-zone" id="team-upload-zone"
              ondragover="event.preventDefault();this.classList.add('drag')"
              ondragleave="this.classList.remove('drag')"
@@ -1163,7 +1164,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 
 <script>
 /* ================================================================
-   IBM Performance Tool 2026 ΓÇö Full JavaScript Implementation
+   IBM Performance Tool 2026 — Full JavaScript Implementation
    Features: localStorage auto-save, 6-tab navigation, collapsible
    goal cards, progress bar, rating pills, auto-generate narrative,
    manager mode, printable report, export/import JSON.
@@ -1171,9 +1172,9 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 var PFX = 'ibm_perf_2026_';
 var mgr = false, st = null;
 
-// ΓöÇΓöÇ Build Sections ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Build Sections ─────────────────────────────────────────────
 
-// ΓöÇΓöÇ Goal row view/edit state ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Goal row view/edit state ────────────────────────────────────
 var gbkEditMode = {};  // gbkEditMode[i] = true when row i is in edit mode
 
 function buildGoals() {
@@ -1181,20 +1182,20 @@ function buildGoals() {
   for (var i = 1; i <= 5; i++) {
     h += '<tr id="grow' + i + '">' +
 
-      // ΓöÇΓöÇ Goal plan & description ΓöÇΓöÇ
+      // ── Goal plan & description ──
       '<td>' +
-        '<div class="gbk-view empty" id="gdv' + i + '">Not yet populated ΓÇö click Analyse &amp; Populate</div>' +
+        '<div class="gbk-view empty" id="gdv' + i + '">Not yet populated — click Analyse &amp; Populate</div>' +
         '<div class="gbk-edit-wrap" id="gde' + i + '">' +
-          '<textarea class="gbk-input" id="gd' + i + '" data-key="g' + i + '_desc" placeholder="Enter goal plan &amp; descriptionΓÇª" oninput="upgs(' + i + ')"></textarea>' +
+          '<textarea class="gbk-input" id="gd' + i + '" data-key="g' + i + '_desc" placeholder="Enter goal plan &amp; description…" oninput="upgs(' + i + ')"></textarea>' +
         '</div>' +
       '</td>' +
 
-      // ΓöÇΓöÇ Goal Category ΓöÇΓöÇ
+      // ── Goal Category ──
       '<td>' +
-        '<div class="gbk-view empty" id="gcatv' + i + '">ΓÇö</div>' +
+        '<div class="gbk-view empty" id="gcatv' + i + '">—</div>' +
         '<div class="gbk-edit-wrap" id="gcate' + i + '">' +
           '<select class="gbk-input" id="gcat' + i + '" data-key="g' + i + '_category" onchange="upgs(' + i + ')">' +
-            '<option value="">ΓÇö Select ΓÇö</option>' +
+            '<option value="">— Select —</option>' +
             '<option>Business Outcomes</option>' +
             '<option>Behaviors</option>' +
             '<option>Skills</option>' +
@@ -1205,20 +1206,20 @@ function buildGoals() {
         '</div>' +
       '</td>' +
 
-      // ΓöÇΓöÇ Summary of evidences ΓöÇΓöÇ
+      // ── Summary of evidences ──
       '<td>' +
         '<div class="gbk-view empty" id="gnv' + i + '">Not yet populated</div>' +
         '<div class="gbk-edit-wrap" id="gne' + i + '">' +
-          '<textarea class="gbk-input" id="gn' + i + '" data-key="g' + i + '_notes" placeholder="Summary of evidencesΓÇª" oninput="upgs(' + i + ')"></textarea>' +
+          '<textarea class="gbk-input" id="gn' + i + '" data-key="g' + i + '_notes" placeholder="Summary of evidences…" oninput="upgs(' + i + ')"></textarea>' +
         '</div>' +
       '</td>' +
 
-      // ΓöÇΓöÇ Progress of goals ΓöÇΓöÇ
+      // ── Progress of goals ──
       '<td>' +
         '<div id="gstv' + i + '"><span class="gbk-status-badge gbk-st-none">Not Started</span></div>' +
         '<div class="gbk-edit-wrap" id="gste' + i + '">' +
           '<select class="gbk-input" id="gst' + i + '" data-key="g' + i + '_status" onchange="gbkOnStatusChange(' + i + ')">' +
-            '<option value="">ΓÇö Select ΓÇö</option>' +
+            '<option value="">— Select —</option>' +
             '<option>Not Started</option>' +
             '<option>Work In Progress</option>' +
             '<option>Completed</option>' +
@@ -1226,7 +1227,7 @@ function buildGoals() {
         '</div>' +
       '</td>' +
 
-      // ΓöÇΓöÇ % completion ΓöÇΓöÇ
+      // ── % completion ──
       '<td style="text-align:center">' +
         '<div class="gbk-pct-display" id="gpv' + i + '">0%</div>' +
         '<div class="gbk-edit-wrap" id="gpe' + i + '">' +
@@ -1234,7 +1235,7 @@ function buildGoals() {
         '</div>' +
       '</td>' +
 
-      // ΓöÇΓöÇ Edit / Save button ΓöÇΓöÇ
+      // ── Edit / Save button ──
       '<td class="gbk-act">' +
         '<button class="gbk-btn-edit" id="gbkbtn' + i + '" onclick="gbkToggleEdit(' + i + ')">Edit</button>' +
       '</td>' +
@@ -1297,12 +1298,12 @@ function gbkRefreshView(i) {
 
   if (dv) {
     var dval = desc ? desc.value.trim() : '';
-    dv.textContent = dval || 'Not yet populated ΓÇö click Analyse & Populate';
+    dv.textContent = dval || 'Not yet populated — click Analyse & Populate';
     dv.className = 'gbk-view' + (dval ? '' : ' empty');
   }
   if (cv) {
     var cval = cat ? cat.value : '';
-    cv.textContent = cval || 'ΓÇö';
+    cv.textContent = cval || '—';
     cv.className = 'gbk-view' + (cval ? '' : ' empty');
   }
   if (nv) {
@@ -1320,7 +1321,7 @@ function gbkRefreshView(i) {
   }
 }
 
-// ΓöÇΓöÇ Parse goals from "Goal Plan" tab of the uploaded GPA Excel ΓöÇ
+// ── Parse goals from "Goal Plan" tab of the uploaded GPA Excel ─
 // Reads the "Goal Plan" tab (case-insensitive). Falls back to the first sheet.
 // Detects column headers: Goal Category | Goal Plan | Goal Description |
 //   Summary of Evidences | Status (order-independent, matched by keyword).
@@ -1341,7 +1342,7 @@ function parseGoalsFromXlsx(file, callback) {
       var ws   = wb.Sheets[sheetName];
       var rows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
       var goals = [];
-      // Auto-detect header row ΓÇö find first row containing "goal"
+      // Auto-detect header row — find first row containing "goal"
       var dataStart = 1;
       var headerRow = [];
       for (var r = 0; r < Math.min(rows.length, 5); r++) {
@@ -1395,11 +1396,11 @@ function parseGoalsFromXlsx(file, callback) {
   reader.readAsArrayBuffer(file);
 }
 
-// ΓöÇΓöÇ Analyse & Populate ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Analyse & Populate ─────────────────────────────────────────
 // All data is sourced from Gather Documentation uploads:
-//   df1 (Outlook Evidence) ΓåÆ Goal Plan & Description (col B+C), Goal Category (col A),
+//   df1 (Outlook Evidence) → Goal Plan & Description (col B+C), Goal Category (col A),
 //                            Summary of evidences (col D+)
-//   df2 + df5        ΓåÆ additional context for progress detection
+//   df2 + df5        → additional context for progress detection
 function analyseAndPopulate() {
   var btn     = document.getElementById('gbk-analyse-btn');
   var prog    = document.getElementById('gbk-prog');
@@ -1410,7 +1411,7 @@ function analyseAndPopulate() {
   // Guard: must have at least one Excel file in the Goal Plan & Achievements slot (df1)
   var gpaFiles = (docFiles['df1'] || []).filter(function(f){ return f; });
   if (gpaFiles.length === 0) {
-    toast('No file uploaded in Goal Plan & Achievements. Go to Gather Documentation ΓåÆ Goal Plan & Achievements and upload your Excel file first.', 'warn');
+    toast('No file uploaded in Goal Plan & Achievements. Go to Gather Documentation → Goal Plan & Achievements and upload your Excel file first.', 'warn');
     return;
   }
 
@@ -1418,7 +1419,7 @@ function analyseAndPopulate() {
   prog.classList.add('vis');
   if (parseResultEl) parseResultEl.style.display = 'none';
   progFill.style.width = '5%';
-  progMsg.textContent = 'Reading documentΓÇª';
+  progMsg.textContent = 'Reading document…';
 
   // Additional context files for progress detection (no longer includes df0)
   var feedbackFiles = (docFiles['df2'] || []).filter(function(f){ return f; });
@@ -1438,15 +1439,15 @@ function analyseAndPopulate() {
 
   // Parse goals from the "Goal Plan" tab of the uploaded Excel file
   progFill.style.width = '30%';
-  progMsg.textContent = 'Reading Goal Plan tabΓÇª';
+  progMsg.textContent = 'Reading Goal Plan tab…';
 
   parseGoalsFromXlsx(gpaFiles[0], function(parsedGoals) {
     progFill.style.width = '60%';
-    progMsg.textContent = 'Extracting contextΓÇª';
+    progMsg.textContent = 'Extracting context…';
 
     extractTextFromFiles(contextFiles, function(contextTexts) {
       progFill.style.width = '75%';
-      progMsg.textContent = 'Populating tableΓÇª';
+      progMsg.textContent = 'Populating table…';
 
       var goalsFound = parsedGoals.length;
 
@@ -1487,7 +1488,7 @@ function analyseAndPopulate() {
           parseResultEl.style.color = '#b91c1c';
           parseResultEl.innerHTML = '<strong>&#9888; No goals detected</strong> in the uploaded file.<br>'
             + '<div style="margin-top:6px">Make sure your Excel file has a <strong>Goal Plan</strong> tab with columns for Goal Category, Goal Plan, Goal Description, and optionally Summary of Evidences and Status.</div>';
-          toast('No goals detected ΓÇö check file format.', 'warn');
+          toast('No goals detected — check file format.', 'warn');
         }
       }
     });
@@ -1495,7 +1496,7 @@ function analyseAndPopulate() {
 }
 
 // Extract text from an array of File objects (evidence files).
-// Handles PDF (via PDF.js), .txt (FileReader), .xlsx/.xls (SheetJS), others ΓåÆ filename stub.
+// Handles PDF (via PDF.js), .txt (FileReader), .xlsx/.xls (SheetJS), others → filename stub.
 function extractTextFromFiles(files, callback) {
   if (!files || files.length === 0) { callback([]); return; }
   var results = new Array(files.length);
@@ -1582,7 +1583,7 @@ function gbkExtractPdfTextRaw(file, callback) {
   reader.readAsArrayBuffer(file);
 }
 
-// ΓöÇΓöÇ gbkExtractPdfText kept as alias for backward compatibility ΓöÇΓöÇ
+// ── gbkExtractPdfText kept as alias for backward compatibility ──
 function gbkExtractPdfText(file, callback) { gbkExtractPdfTextRaw(file, callback); }
 
 // Parse goals from raw PDF text extracted from SuccessFactors Goal Plan PDF.
@@ -1591,13 +1592,13 @@ function gbkExtractPdfText(file, callback) { gbkExtractPdfTextRaw(file, callback
 //
 //   "Goal Plan:  2026 Goal Plan    Category:  Business Outcomes    Owner:  Emily Chu SC"
 //   "Print Date:  Jul 13, 2026"
-//   "Cross-Functional Collaboration on Tax Return and Tax Audit Challenges"   ΓåÉ TITLE
+//   "Cross-Functional Collaboration on Tax Return and Tax Audit Challenges"   ← TITLE
 //   "(Private)"   [optional, may be on same or next line as title]
 //   "Updated: Apr 21, 2026"
-//   "Status    Due Date"    ΓåÉ PDF.js may merge these two columns onto one line
-//   "In Progress    Dec 31, 2026"  ΓåÉ same ΓÇö status and date on one line
-//   "Goal Description"             ΓåÉ section label
-//   "Identify key pain points..."  ΓåÉ DESCRIPTION (may span multiple lines)
+//   "Status    Due Date"    ← PDF.js may merge these two columns onto one line
+//   "In Progress    Dec 31, 2026"  ← same — status and date on one line
+//   "Goal Description"             ← section label
+//   "Identify key pain points..."  ← DESCRIPTION (may span multiple lines)
 //
 // Returns array of { title, desc, category, status } up to 5 goals.
 function parseGoalsFromText(text) {
@@ -1606,7 +1607,7 @@ function parseGoalsFromText(text) {
   // Normalise line endings, keep structure
   var lines = text.split('\n').map(function(l){ return l.trim(); }).filter(function(l){ return l.length > 0; });
 
-  // ΓöÇΓöÇ Find every "Goal Plan:" header line ΓÇö one per goal ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Find every "Goal Plan:" header line — one per goal ──────────
   var goalPlanIndices = [];
   lines.forEach(function(line, idx) {
     if (/^Goal Plan[\s:]/i.test(line)) goalPlanIndices.push(idx);
@@ -1621,14 +1622,14 @@ function parseGoalsFromText(text) {
         ? goalPlanIndices[blockNum + 1] : lines.length;
       var block = lines.slice(startIdx, endIdx);
 
-      // ΓöÇΓöÇ 1. Category ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+      // ── 1. Category ─────────────────────────────────────────────
       // Header line: "Goal Plan:  2026 Goal Plan    Category:  Business Outcomes    Owner:  Emily Chu SC"
       var headerLine = block[0] || '';
       var catMatch = headerLine.match(/Category[\s:]+([A-Za-z &\/\-]+?)(?:\s{2,}|\s+Owner[\s:])/i)
                   || headerLine.match(/Category[\s:]+([A-Za-z &\/\-]+)/i);
       var category = catMatch ? catMatch[1].trim() : '';
 
-      // ΓöÇΓöÇ 2. Status ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+      // ── 2. Status ────────────────────────────────────────────────
       // Scan only the region between "Updated:" (or "Print Date") and "Goal Description".
       // This avoids false matches inside description text.
       // Status value appears:
@@ -1646,12 +1647,12 @@ function parseGoalsFromText(text) {
           if (sm0) { status = sm0[1]; break; }
         }
       }
-      // Normalise "In Progress" ΓåÆ dropdown value
+      // Normalise "In Progress" → dropdown value
       if (/^In Progress$/i.test(status)) status = 'Work In Progress';
 
-      // ΓöÇΓöÇ 3. Title ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+      // ── 3. Title ─────────────────────────────────────────────────
       // Title = all content lines AFTER "Print Date" and BEFORE "Updated:"
-      // The title may wrap across two PDF lines ΓÇö collect all of them.
+      // The title may wrap across two PDF lines — collect all of them.
       var titleParts = [];
       var pastPrintDate = false;
 
@@ -1676,7 +1677,7 @@ function parseGoalsFromText(text) {
       }
       var title = titleParts.join(' ').replace(/\s+/g, ' ').trim();
 
-      // ΓöÇΓöÇ 4. Description ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+      // ── 4. Description ───────────────────────────────────────────
       // Everything after the "Goal Description" label line
       var descParts = [];
       var inDesc = false;
@@ -1699,7 +1700,7 @@ function parseGoalsFromText(text) {
     if (goals.length > 0) return goals;
   }
 
-  // ΓöÇΓöÇ FALLBACK: flat-text "Goal Plan:" split (lines merged by PDF.js) ΓöÇΓöÇ
+  // ── FALLBACK: flat-text "Goal Plan:" split (lines merged by PDF.js) ──
   var flat = text.replace(/\r/g, ' ').replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
   var chunks = flat.split(/(?=Goal Plan[\s:]+)/i).filter(function(c){ return /Goal Plan[\s:]+/i.test(c); });
 
@@ -1711,7 +1712,7 @@ function parseGoalsFromText(text) {
 
       // Strip header through Print Date
       var body = chunk.replace(/^Goal Plan[\s:]+.*?Print Date[\s:]+[A-Za-z]+\.?\s+\d{1,2},?\s+\d{4}\s*/i, '').trim();
-      if (body === chunk.trim()) // Print Date not found ΓÇö strip through Owner name
+      if (body === chunk.trim()) // Print Date not found — strip through Owner name
         body = chunk.replace(/^Goal Plan[\s:]+.*?\bOwner[\s:]+.+?\s{3,}/i, '').trim();
 
       // Status from anywhere in body
@@ -1783,7 +1784,7 @@ function splitIntoSentences(text) {
 // Populate a single goal row with extracted data and evidence.
 // Goal plan & description is always written from the parsed goal source.
 // Other fields are only set if not already filled by the user.
-// outlookEvidenceText: text extracted exclusively from df1 (Outlook slot) ΓÇö used for Summary of evidences.
+// outlookEvidenceText: text extracted exclusively from df1 (Outlook slot) — used for Summary of evidences.
 function populateGoalRow(i, goal, evidenceText, goalIdx, totalGoals, outlookEvidenceText) {
   var descEl  = document.getElementById('gd'   + i);
   var catEl   = document.getElementById('gcat' + i);
@@ -1791,13 +1792,13 @@ function populateGoalRow(i, goal, evidenceText, goalIdx, totalGoals, outlookEvid
   var stEl    = document.getElementById('gst'  + i);
   var pctEl   = document.getElementById('gp'   + i);
 
-  // ΓöÇΓöÇ Goal plan & description ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Goal plan & description ─────────────────────────────────
   // Always write from the parsed source (PDF or Excel).
   if (goal && goal.desc && descEl) {
     descEl.value = goal.desc;
   }
 
-  // ΓöÇΓöÇ Goal Category ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Goal Category ───────────────────────────────────────────
   if (goal && goal.category && catEl) {
     var cats = ['Business Outcomes','Behaviors','Skills','Leadership','Client','Other'];
     var matched = '';
@@ -1813,10 +1814,10 @@ function populateGoalRow(i, goal, evidenceText, goalIdx, totalGoals, outlookEvid
     catEl.value = matched || goal.category;
   }
 
-  // ΓöÇΓöÇ Summary of evidences ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Summary of evidences ────────────────────────────────────
   // Priority order:
   //   1. goal.evidence (extra columns from the Excel file, e.g. col D+)
-  //   2. outlookEvidenceText (text extracted from df1 Outlook files ΓÇö PDF source mode)
+  //   2. outlookEvidenceText (text extracted from df1 Outlook files — PDF source mode)
   //   3. general evidenceText fallback
   if (notesEl && !notesEl.value.trim()) {
     var notesValue = '';
@@ -1829,7 +1830,7 @@ function populateGoalRow(i, goal, evidenceText, goalIdx, totalGoals, outlookEvid
     notesEl.value = notesValue;
   }
 
-  // ΓöÇΓöÇ Progress & % completion ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Progress & % completion ─────────────────────────────────
   // Status is already normalised to dropdown values by the parser.
   if (stEl && pctEl && !stEl.value) {
     if (goal && goal.status) {
@@ -1912,7 +1913,7 @@ function buildFb() {
   for (var i = 1; i <= 5; i++) {
     h += '<div class="ec"><div class="en">Feedback ' + i + '</div>' +
       '<div class="fg"><label>From</label><input type="text" id="ff' + i + '" data-key="f' + i + '_from" placeholder="e.g. Sarah Colleague"></div>' +
-      '<div class="fg"><label>Relationship</label><select id="fr' + i + '" data-key="f' + i + '_rel"><option value="">ΓÇö Select ΓÇö</option><option>Manager</option><option>Peer</option><option>Direct Report</option><option>Client</option><option>Skip-level</option><option value="Cross-functional">Cross-functional Partner</option></select></div>' +
+      '<div class="fg"><label>Relationship</label><select id="fr' + i + '" data-key="f' + i + '_rel"><option value="">— Select —</option><option>Manager</option><option>Peer</option><option>Direct Report</option><option>Client</option><option>Skip-level</option><option value="Cross-functional">Cross-functional Partner</option></select></div>' +
       '<div class="fg"><label>Feedback Message</label><textarea id="fm' + i + '" data-key="f' + i + '_msg" placeholder="Paste or summarise the feedback received..."></textarea></div>' +
       '</div>';
   }
@@ -1920,8 +1921,6 @@ function buildFb() {
 }
 
 function buildLrn() {
-  var lcc = document.getElementById('lcc');
-  if (!lcc) return;
   var h = '<div style="margin-bottom:12px;font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px">Course Details</div>';
   for (var i = 1; i <= 5; i++) {
     h += '<div class="ec"><div class="en">Course ' + i + '</div>' +
@@ -1931,10 +1930,10 @@ function buildLrn() {
       '<div class="fg"><label>Hours</label><input type="number" id="ch' + i + '" data-key="c' + i + '_hours" placeholder="0" min="0"></div></div>' +
       '</div>';
   }
-  lcc.innerHTML = h;
+  document.getElementById('lcc').innerHTML = h;
 }
 
-// ΓöÇΓöÇ Card Toggle ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Card Toggle ────────────────────────────────────────────────
 function tog(bid, hid) {
   var b = document.getElementById(bid), h = document.getElementById(hid);
   var op = b.classList.contains('op');
@@ -1951,7 +1950,7 @@ function upsl(i, v) {
   sched();
 }
 
-// ΓöÇΓöÇ Tab Navigation ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Tab Navigation ─────────────────────────────────────────────
 var TABS = [0, 6, 7, 8, 4, 5];
 function go(n) {
   TABS.forEach(function(i) {
@@ -1963,7 +1962,7 @@ function go(n) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ΓöÇΓöÇ Auto-Save ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Auto-Save ──────────────────────────────────────────────────
 function sched() { clearTimeout(st); st = setTimeout(saveAll, 500); }
 
 function saveAll() {
@@ -1973,6 +1972,8 @@ function saveAll() {
       if (el.checked) localStorage.setItem(PFX + k, el.value);
     } else {
       var v = el.value;
+      // Never overwrite an existing saved value with an empty string
+      if (v === '' && localStorage.getItem(PFX + k) !== null) return;
       if (v !== '') localStorage.setItem(PFX + k, v);
     }
   });
@@ -1994,7 +1995,7 @@ function isCleanGoalValue(v) {
   if (/<[a-z]/i.test(v)) return false;               // HTML tags
   if (/&(?:amp|lt|gt|quot|#\d+);/.test(v)) return false; // HTML entities
   // Reject if more than 40% of characters are punctuation/symbols with no spaces
-  var nonWord = (v.match(/[^a-zA-Z0-9\s,.'"\-ΓÇôΓÇö:;!?()/]/g) || []).length;
+  var nonWord = (v.match(/[^a-zA-Z0-9\s,.'"\-–—:;!?()/]/g) || []).length;
   if (v.length > 10 && nonWord / v.length > 0.35) return false;
   return true;
 }
@@ -2036,10 +2037,10 @@ function resetGoals() {
     gbkRefreshView(i);
   }
   updGoalMonitor();
-  toast('Goal rows cleared ΓÇö ready for Analyse & Populate.', 'warn');
+  toast('Goal rows cleared — ready for Analyse & Populate.', 'warn');
 }
 
-// ΓöÇΓöÇ Progress ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Progress ───────────────────────────────────────────────────
 function lv(k) { return localStorage.getItem(PFX + k) || ''; }
 
 function started(idx) {
@@ -2068,7 +2069,7 @@ function updProg() {
   updGoalMonitor();
 }
 
-// ΓöÇΓöÇ Goal Monitor Table ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Goal Monitor Table ─────────────────────────────────────────
 function updGoalMonitor() {
   var tbody = document.getElementById('gmon-tbody');
   if (!tbody) return;
@@ -2107,9 +2108,9 @@ function updGoalMonitor() {
       var rating = avgPct >= 80 ? 'Top' : avgPct >= 50 ? 'Core' : 'Low';
       var ratingStyle = avgPct >= 80 ? 'color:#2f9e44;font-weight:600' : avgPct >= 50 ? 'color:#8a6200;font-weight:600' : 'color:#e03131;font-weight:600';
       // Recommendation
-      var rec = avgPct >= 80 ? 'On track ΓÇö meeting or exceeding performance expectations.'
-              : avgPct >= 50 ? 'In progress ΓÇö continue to drive completion towards target.'
-              : 'Action needed ΓÇö prioritise and accelerate progress on these goals.';
+      var rec = avgPct >= 80 ? 'On track — meeting or exceeding performance expectations.'
+              : avgPct >= 50 ? 'In progress — continue to drive completion towards target.'
+              : 'Action needed — prioritise and accelerate progress on these goals.';
       html += '<tr>' +
         '<td class="gmon-cat-cell">' + esc(key) + '</td>' +
         '<td style="text-align:center">' + d.count + '</td>' +
@@ -2122,13 +2123,19 @@ function updGoalMonitor() {
   tbody.innerHTML = html;
 }
 
-// ΓöÇΓöÇ Clear ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Clear ──────────────────────────────────────────────────────
 function clearAll() {
   if (!confirm('Clear ALL saved data? This cannot be undone.')) return;
   Object.keys(localStorage).forEach(function(k){ if(k.startsWith(PFX)) localStorage.removeItem(k); });
   document.querySelectorAll('[data-key]').forEach(function(el){
     if (el.type==='radio') el.checked=false;
     else el.value='';
+  });
+  // Clear in-memory file store and rendered lists
+  docFiles = {};
+  ['df1','df2','df3','df4','df5'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (el) el.innerHTML = '';
   });
   // Reset goal row views
   for (var i = 1; i <= 5; i++) gbkRefreshView(i);
@@ -2138,7 +2145,7 @@ function clearAll() {
   toast('All data cleared.','warn');
 }
 
-// ΓöÇΓöÇ Manager Mode ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Manager Mode ───────────────────────────────────────────────
 function toggleMgr() {
   mgr = !mgr;
   var btn = document.getElementById('mtbtn');
@@ -2154,10 +2161,10 @@ function toggleMgr() {
   if (!mgr && document.getElementById('t5') && document.getElementById('t5').classList.contains('on')) {
     go(4);
   }
-  toast(mgr ? 'Manager Mode on ΓÇö Team Summary tab now visible.' : 'Employee Mode active.', mgr ? 'ok' : 'warn');
+  toast(mgr ? 'Manager Mode on — Team Summary tab now visible.' : 'Employee Mode active.', mgr ? 'ok' : 'warn');
 }
 
-// ΓöÇΓöÇ Toast ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Toast ──────────────────────────────────────────────────────
 function toast(msg, type) {
   var t = document.getElementById('toast');
   t.textContent = msg;
@@ -2166,19 +2173,19 @@ function toast(msg, type) {
   t._t = setTimeout(function(){ t.className=''; }, 3500);
 }
 
-// ΓöÇΓöÇ Auto-Generate Narrative ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Auto-Generate Narrative ────────────────────────────────────
 // Produces a structured, management-grade self-assessment narrative and
 // auto-derives Key Strengths and Development Areas from all data sources:
-//   ΓÇó Goal Tracker rows (description, evidence, status, % completion)
-//   ΓÇó Recognition entries (by, type, message)
-//   ΓÇó Feedback entries (from, message)
-//   ΓÇó Learning hours / badges
+//   • Goal Tracker rows (description, evidence, status, % completion)
+//   • Recognition entries (by, type, message)
+//   • Feedback entries (from, message)
+//   • Learning hours / badges
 function autoGen() {
   var name = document.getElementById('en_').value.trim() || 'the employee';
   var role = document.getElementById('er_').value.trim() || 'their role';
   var bu   = document.getElementById('ebu').value.trim() || 'IBM';
 
-  // ΓöÇΓöÇ Collect goal data ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Collect goal data ──────────────────────────────────────────
   var goals = [];
   for (var i = 1; i <= 5; i++) {
     var desc  = lv('g' + i + '_desc').trim();
@@ -2189,7 +2196,7 @@ function autoGen() {
     if (desc) goals.push({ desc: desc, cat: cat, notes: notes, stat: stat, pct: pct });
   }
 
-  // ΓöÇΓöÇ Collect recognition data ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Collect recognition data ───────────────────────────────────
   var recs = [];
   for (var i = 1; i <= 5; i++) {
     var rBy  = lv('r' + i + '_by').trim();
@@ -2198,7 +2205,7 @@ function autoGen() {
     if (rBy || rMsg) recs.push({ by: rBy, type: rTyp, msg: rMsg });
   }
 
-  // ΓöÇΓöÇ Collect feedback data ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Collect feedback data ──────────────────────────────────────
   var feedbacks = [];
   for (var i = 1; i <= 5; i++) {
     var fFrom = lv('f' + i + '_from').trim();
@@ -2206,7 +2213,7 @@ function autoGen() {
     if (fFrom || fMsg) feedbacks.push({ from: fFrom, msg: fMsg });
   }
 
-  // ΓöÇΓöÇ Learning ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Learning ───────────────────────────────────────────────────
   var lH = parseInt(lv('gdoc_learn_hours'), 10) || parseInt(lv('learn_hours'), 10) || 0;
   var lB = parseInt(lv('gdoc_learn_badges'), 10) || parseInt(lv('learn_badges'), 10) || 0;
 
@@ -2218,7 +2225,7 @@ function autoGen() {
 
   var paras = [];
 
-  // ΓöÇΓöÇ P1 ΓÇö Opening overview ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── P1 — Opening overview ──────────────────────────────────────
   var p1 = 'For the 2026 performance year, ' + name + ' has demonstrated strong commitment and consistent delivery in the capacity of ' + role + ' within ' + bu + '.';
   if (gN > 0) {
     p1 += ' A total of ' + gN + ' performance goal' + (gN > 1 ? 's were' : ' was') + ' set for this review period';
@@ -2235,45 +2242,45 @@ function autoGen() {
   }
   paras.push(p1);
 
-  // ΓöÇΓöÇ P2 ΓÇö Goal-by-goal delivery ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── P2 — Goal-by-goal delivery ─────────────────────────────────
   if (goals.length > 0) {
     var goalLines = goals.map(function(g) {
       // Use only the first line of the description (the goal title) for readability
       var title = g.desc.split('\n')[0].trim();
-      if (title.length > 120) title = title.substring(0, 118) + 'ΓÇª';
+      if (title.length > 120) title = title.substring(0, 118) + '…';
       var statusLabel = g.stat === 'Completed' ? 'completed'
                       : g.stat === 'Work In Progress' ? 'in progress (' + g.pct + '%)'
                       : 'not yet started';
-      var line = title + ' ΓÇö ' + statusLabel;
+      var line = title + ' — ' + statusLabel;
       if (g.cat) line += ' [' + g.cat + ']';
       return line;
     });
 
     var p2 = 'The following goals were set and pursued during this review period:\n';
-    p2 += goalLines.map(function(l){ return '  ΓÇó ' + l; }).join('\n');
+    p2 += goalLines.map(function(l){ return '  • ' + l; }).join('\n');
     p2 += '\n\nProgress has been underpinned by a disciplined and structured approach to delivery. ';
     p2 += 'Where goals are still in progress, clear plans are in place to drive completion within the agreed timeline. ';
     p2 += name + ' has approached each objective with accountability, attention to detail, and a focus on measurable outcomes.';
     paras.push(p2);
   }
 
-  // ΓöÇΓöÇ P3 ΓÇö Evidence highlights ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── P3 — Evidence highlights ───────────────────────────────────
   var evidenceLines = goals
     .filter(function(g){ return g.notes && g.notes.trim(); })
     .map(function(g){
       var title = g.desc.split('\n')[0].trim();
-      if (title.length > 80) title = title.substring(0, 78) + 'ΓÇª';
+      if (title.length > 80) title = title.substring(0, 78) + '…';
       var ev = g.notes.trim();
-      if (ev.length > 200) ev = ev.substring(0, 198) + 'ΓÇª';
+      if (ev.length > 200) ev = ev.substring(0, 198) + '…';
       return title + ': ' + ev;
     });
   if (evidenceLines.length > 0) {
     var p3 = 'The following evidence supports progress against each goal:\n';
-    p3 += evidenceLines.map(function(l){ return '  ΓÇó ' + l; }).join('\n');
+    p3 += evidenceLines.map(function(l){ return '  • ' + l; }).join('\n');
     paras.push(p3);
   }
 
-  // ΓöÇΓöÇ P4 ΓÇö Recognition ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── P4 — Recognition ──────────────────────────────────────────
   if (rN > 0) {
     var rTypes = recs.map(function(r){ return r.type; }).filter(Boolean);
     var uTypes = rTypes.filter(function(v, i, a){ return a.indexOf(v) === i; });
@@ -2301,7 +2308,7 @@ function autoGen() {
     paras.push(p4);
   }
 
-  // ΓöÇΓöÇ P5 ΓÇö Feedback summary ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── P5 — Feedback summary ──────────────────────────────────────
   if (feedbacks.length > 0) {
     var fbMsgText = feedbacks.map(function(f){ return f.msg || ''; }).join(' ').toLowerCase();
     var fbThemes = [];
@@ -2320,7 +2327,7 @@ function autoGen() {
     }
   }
 
-  // ΓöÇΓöÇ P6 ΓÇö Learning & development ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── P6 — Learning & development ───────────────────────────────
   if (lH > 0 || lB > 0) {
     var p6 = name + ' has demonstrated a strong commitment to continuous professional development throughout 2026.';
     if (lH > 0) p6 += ' A total of ' + lH + ' learning hour' + (lH !== 1 ? 's were' : ' was') + ' completed, reflecting active investment in skill-building.';
@@ -2329,7 +2336,7 @@ function autoGen() {
     paras.push(p6);
   }
 
-  // ΓöÇΓöÇ P7 ΓÇö Closing ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── P7 — Closing ──────────────────────────────────────────────
   var p7 = 'Overall, ' + name + ' has delivered a strong performance in the 2026 review period, demonstrating accountability, professionalism, and a clear focus on outcomes that align with ' + bu + '\'s strategic direction. ';
   p7 += (done === gN && gN > 0)
     ? 'All goals have been completed, reflecting an exceptional level of delivery and personal commitment.'
@@ -2338,12 +2345,12 @@ function autoGen() {
 
   document.getElementById('sna').value = paras.join('\n\n');
 
-  // ΓöÇΓöÇ Auto-derive Key Strengths ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Auto-derive Key Strengths ──────────────────────────────────
   var strengths = autoDerive_Strengths(goals, recs, feedbacks);
   var strEl = document.getElementById('sst');
   if (strEl && !strEl.value.trim()) strEl.value = strengths;
 
-  // ΓöÇΓöÇ Auto-derive Development Areas ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Auto-derive Development Areas ─────────────────────────────
   var devAreas = autoDerive_Development(goals, feedbacks);
   var devEl = document.getElementById('sde');
   if (devEl && !devEl.value.trim()) devEl.value = devAreas;
@@ -2353,7 +2360,7 @@ function autoGen() {
   document.getElementById('sna').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-// ΓöÇΓöÇ Derive Key Strengths from goals, recognition, and feedback ΓöÇΓöÇ
+// ── Derive Key Strengths from goals, recognition, and feedback ──
 function autoDerive_Strengths(goals, recs, feedbacks) {
   var signals = {};
   function add(key, label) { if (!signals[key]) signals[key] = { label: label, score: 0 }; signals[key].score++; }
@@ -2401,12 +2408,12 @@ function autoDerive_Strengths(goals, recs, feedbacks) {
   return top.join('\n');
 }
 
-// ΓöÇΓöÇ Derive Development Areas from goal gaps and feedback ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Derive Development Areas from goal gaps and feedback ────────
 function autoDerive_Development(goals, feedbacks) {
   var signals = {};
   function add(key, label) { if (!signals[key]) signals[key] = { label: label, score: 0 }; signals[key].score++; }
 
-  // Goals not yet completed ΓÇö indicate in-progress development areas
+  // Goals not yet completed — indicate in-progress development areas
   goals.forEach(function(g) {
     var t = (g.desc + ' ' + g.notes).toLowerCase();
     if (g.pct < 50 || g.stat === 'Not Started') {
@@ -2438,13 +2445,13 @@ function autoDerive_Development(goals, feedbacks) {
   return top.join('\n');
 }
 
-// ΓöÇΓöÇ Generate Full Report ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Generate Full Report ───────────────────────────────────────
 function genRpt() {
   var name=document.getElementById('en_').value||'Not provided';
-  var ser=document.getElementById('es_').value||'ΓÇö';
-  var band=document.getElementById('eb_').value||'ΓÇö';
-  var bu=document.getElementById('ebu').value||'ΓÇö';
-  var role=document.getElementById('er_').value||'ΓÇö';
+  var ser=document.getElementById('es_').value||'—';
+  var band=document.getElementById('eb_').value||'—';
+  var bu=document.getElementById('ebu').value||'—';
+  var role=document.getElementById('er_').value||'—';
   var today=new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'long',year:'numeric'});
 
   document.getElementById('rmeta').innerHTML=
@@ -2534,30 +2541,30 @@ function mi(l,v){ return '<div class="rmi"><label>'+l+'</label><span>'+esc(v)+'<
 function sb(v,l){ return '<div style="text-align:center"><div style="font-size:28px;font-weight:700;color:var(--ibm-blue);font-family:\'IBM Plex Mono\',monospace">'+esc(v)+'</div><div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px">'+l+'</div></div>'; }
 function esc(s){ if(!s) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-// ΓöÇΓöÇ Export / Import ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Export / Import ────────────────────────────────────────────
 
-// ΓöÇΓöÇ Generate 1 Page Report ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Generate 1 Page Report ─────────────────────────────────────
 function gen1PageRpt() {
   var name  = document.getElementById('en_').value  || 'Not provided';
-  var ser   = document.getElementById('es_').value  || 'ΓÇö';
-  var band  = document.getElementById('eb_').value  || 'ΓÇö';
-  var bu    = document.getElementById('ebu').value  || 'ΓÇö';
-  var role  = document.getElementById('er_').value  || 'ΓÇö';
+  var ser   = document.getElementById('es_').value  || '—';
+  var band  = document.getElementById('eb_').value  || '—';
+  var bu    = document.getElementById('ebu').value  || '—';
+  var role  = document.getElementById('er_').value  || '—';
   var today = new Date().toLocaleDateString('en-GB', { day:'2-digit', month:'long', year:'numeric' });
 
-  // ΓöÇΓöÇ Goal progress rows ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Goal progress rows ─────────────────────────────────────────
   var goalRows = '';
   for (var i = 1; i <= 5; i++) {
     var gd  = lv('g' + i + '_desc');       if (!gd) continue;
-    var cat = lv('g' + i + '_category')  || 'ΓÇö';
+    var cat = lv('g' + i + '_category')  || '—';
     var st  = lv('g' + i + '_status')    || 'Not Started';
     var pct = lv('g' + i + '_pct')       || '0';
-    var ev  = lv('g' + i + '_notes')     || 'ΓÇö';
+    var ev  = lv('g' + i + '_notes')     || '—';
     // Goal title = first line only
     var title = gd.split('\n')[0].trim();
-    if (title.length > 120) title = title.substring(0, 118) + 'ΓÇª';
+    if (title.length > 120) title = title.substring(0, 118) + '…';
     // Summarise evidence: extract up to 2 complete sentences, max 220 chars
-    if (ev !== 'ΓÇö' && ev.length > 0) {
+    if (ev !== '—' && ev.length > 0) {
       // Split on sentence boundaries (. ! ?) followed by space or end
       var evSentences = ev.replace(/\n+/g, ' ').match(/[^.!?]+[.!?]+(\s|$)/g) || [];
       if (evSentences.length >= 2) {
@@ -2565,12 +2572,12 @@ function gen1PageRpt() {
       } else if (evSentences.length === 1) {
         ev = evSentences[0].trim();
       }
-      // Hard cap at 220 chars as safety net ΓÇö break at last word boundary
+      // Hard cap at 220 chars as safety net — break at last word boundary
       if (ev.length > 220) {
         ev = ev.substring(0, 218);
         var lastSpace = ev.lastIndexOf(' ');
         if (lastSpace > 150) ev = ev.substring(0, lastSpace);
-        ev = ev.trim() + 'ΓÇª';
+        ev = ev.trim() + '…';
       }
     }
     var stColor = st === 'Completed' ? '#2f9e44' : st === 'Work In Progress' ? '#b45309' : '#5a6096';
@@ -2587,14 +2594,14 @@ function gen1PageRpt() {
   }
   if (!goalRows) goalRows = '<tr><td colspan="5" style="padding:10px;text-align:center;color:#57606a;font-style:italic;font-size:12px">No goals recorded.</td></tr>';
 
-  // ΓöÇΓöÇ Recognition rows ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Recognition rows ───────────────────────────────────────────
   var recRows = '';
   for (var i = 1; i <= 5; i++) {
     var rb = lv('r' + i + '_by');    if (!rb) continue;
-    var rd = lv('r' + i + '_date') || 'ΓÇö';
-    var rt = lv('r' + i + '_type') || 'ΓÇö';
-    var rm = lv('r' + i + '_msg')  || 'ΓÇö';
-    if (rm.length > 160) rm = rm.substring(0, 158) + 'ΓÇª';
+    var rd = lv('r' + i + '_date') || '—';
+    var rt = lv('r' + i + '_type') || '—';
+    var rm = lv('r' + i + '_msg')  || '—';
+    if (rm.length > 160) rm = rm.substring(0, 158) + '…';
     // Format date nicely if YYYY-MM-DD
     var dDisp = rd;
     var dm = rd.match(/^(\d{4})-(\d{2})-(\d{2})$/);
@@ -2611,7 +2618,7 @@ function gen1PageRpt() {
   }
   if (!recRows) recRows = '<tr><td colspan="4" style="padding:10px;text-align:center;color:#57606a;font-style:italic;font-size:12px">No recognition recorded.</td></tr>';
 
-  // ΓöÇΓöÇ Strengths & Development ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Strengths & Development ────────────────────────────────────
   var sst = lv('self_strengths')   || '';
   var sde = lv('self_development') || '';
   function listLines(raw) {
@@ -2621,20 +2628,20 @@ function gen1PageRpt() {
     }).join('');
   }
 
-  // ΓöÇΓöÇ Career aspirations ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Career aspirations ─────────────────────────────────────────
   var sca = lv('self_career') || '<em style="color:#57606a">Not provided.</em>';
-  if (sca.length > 300) sca = sca.substring(0, 298) + 'ΓÇª';
+  if (sca.length > 300) sca = sca.substring(0, 298) + '…';
 
-  // ΓöÇΓöÇ Section heading helper ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Section heading helper ─────────────────────────────────────
   function sh(title) {
     return '<div style="margin:20px 0 8px;padding:6px 12px;background:linear-gradient(135deg,#4c6ef5,#7950f2);border-radius:6px">' +
       '<span style="font-size:12px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.8px">' + title + '</span>' +
     '</div>';
   }
 
-  // ΓöÇΓöÇ Build full 1-page HTML ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Build full 1-page HTML ─────────────────────────────────────
   var html = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">' +
-    '<title>1 Page Summary ΓÇö ' + esc(name) + '</title>' +
+    '<title>1 Page Summary — ' + esc(name) + '</title>' +
     '<style>' +
       'body{font-family:-apple-system,"Segoe UI",sans-serif;font-size:13px;color:#1f2328;background:#fff;margin:0;padding:28px 32px}' +
       '@media print{body{padding:14mm 16mm}@page{margin:10mm}}' +
@@ -2737,12 +2744,12 @@ function handleImp(e) {
       Object.keys(localStorage).forEach(function(k){ if(k.startsWith(PFX)) localStorage.removeItem(k); });
       Object.keys(d).forEach(function(k){ localStorage.setItem(PFX+k,d[k]); });
       restoreAll(); toast('Data imported!');
-    } catch(err){ toast('Invalid file ΓÇö use an exported JSON.','warn'); }
+    } catch(err){ toast('Invalid file — use an exported JSON.','warn'); }
   };
   r.readAsText(file); e.target.value='';
 }
 
-// ΓöÇΓöÇ Team Summary ΓÇö Multi-member loader ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Team Summary — Multi-member loader ─────────────────────────
 var teamMembers = []; // array of parsed JSON objects
 
 function teamFileDrop(e) {
@@ -2779,7 +2786,7 @@ function loadTeamFiles(files) {
           toast('Maximum 10 members reached.', 'warn');
         }
       } catch(err) {
-        toast('Could not read ' + file.name + ' ΓÇö must be a valid JSON export.', 'warn');
+        toast('Could not read ' + file.name + ' — must be a valid JSON export.', 'warn');
       }
       remaining--;
       if (remaining === 0) renderMemberChips();
@@ -2819,7 +2826,7 @@ function clearTeamMembers() {
   if (fi) fi.value = '';
 }
 
-// ΓöÇΓöÇ Compute goal % completion per category for one member ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Compute goal % completion per category for one member ──────
 function memberCatPct(d, cat) {
   // cat: 'Business Outcomes' | 'Skills' | 'Behaviors' | '' (all)
   var totalPct = 0, count = 0;
@@ -2865,7 +2872,7 @@ function renderTeamTable() {
     var beP  = memberCatPct(d, 'Behaviors');
 
     function pctCell(v) {
-      if (v === null) return '<span class="cat-na">ΓÇö</span>';
+      if (v === null) return '<span class="cat-na">—</span>';
       var col = v >= 80 ? '#2f9e44' : v >= 50 ? '#e67700' : '#e03131';
       return '<span class="cat-pct" style="background:' + (v>=80?'#d3f9d8':v>=50?'#fff3bf':'#ffe3e3') +
              ';color:' + col + '">' + v + '%</span>';
@@ -2873,20 +2880,20 @@ function renderTeamTable() {
 
     var strengths = (d.self_strengths || '').trim();
     var devAreas  = (d.self_development || '').trim();
-    var strCell = strengths ? esc(strengths) : '<span class="cat-na">ΓÇö</span>';
-    var devCell = devAreas  ? esc(devAreas)  : '<span class="cat-na">ΓÇö</span>';
+    var strCell = strengths ? esc(strengths) : '<span class="cat-na">—</span>';
+    var devCell = devAreas  ? esc(devAreas)  : '<span class="cat-na">—</span>';
 
     return '<tr>' +
-      '<td><strong>' + esc(d.emp_name || 'ΓÇö') + '</strong></td>' +
-      '<td>' + esc(d.emp_serial || 'ΓÇö') + '</td>' +
-      '<td>' + esc(d.emp_band || 'ΓÇö') + '</td>' +
-      '<td>' + esc(d.emp_role || 'ΓÇö') + '</td>' +
+      '<td><strong>' + esc(d.emp_name || '—') + '</strong></td>' +
+      '<td>' + esc(d.emp_serial || '—') + '</td>' +
+      '<td>' + esc(d.emp_band || '—') + '</td>' +
+      '<td>' + esc(d.emp_role || '—') + '</td>' +
       '<td>' + pctCell(boP) + '</td>' +
       '<td>' + pctCell(skP) + '</td>' +
       '<td>' + pctCell(beP) + '</td>' +
       '<td>' + strCell + '</td>' +
       '<td>' + devCell + '</td>' +
-      '<td>' + (d.self_career ? esc(d.self_career) : '<span class="cat-na">ΓÇö</span>') + '</td>' +
+      '<td>' + (d.self_career ? esc(d.self_career) : '<span class="cat-na">—</span>') + '</td>' +
       '</tr>';
   }).join('');
 
@@ -2913,9 +2920,9 @@ function downloadTeamCSV() {
     var be = memberCatPct(d, 'Behaviors');
     return [
       csvCell(d.emp_name), csvCell(d.emp_serial), csvCell(d.emp_band), csvCell(d.emp_role),
-      csvCell(bo !== null ? bo + '%' : 'ΓÇö'),
-      csvCell(sk !== null ? sk + '%' : 'ΓÇö'),
-      csvCell(be !== null ? be + '%' : 'ΓÇö'),
+      csvCell(bo !== null ? bo + '%' : '—'),
+      csvCell(sk !== null ? sk + '%' : '—'),
+      csvCell(be !== null ? be + '%' : '—'),
       csvCell(d.self_strengths), csvCell(d.self_development), csvCell(d.self_career)
     ].join(',');
   });
@@ -2928,7 +2935,7 @@ function downloadTeamCSV() {
   toast('CSV downloaded!');
 }
 
-// ΓöÇΓöÇ PDF Import ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── PDF Import ─────────────────────────────────────────────────
 function pdfDrop(e) {
   e.preventDefault();
   document.getElementById('pdfzone').classList.remove('drag');
@@ -2952,12 +2959,12 @@ function parsePDF(file) {
   status.classList.add('vis');
   result.classList.remove('vis');
   bar.style.width = '5%';
-  msg.textContent = 'Loading PDFΓÇª';
+  msg.textContent = 'Loading PDF…';
 
   var reader = new FileReader();
   reader.onload = function(ev) {
     bar.style.width = '30%';
-    msg.textContent = 'Extracting textΓÇª';
+    msg.textContent = 'Extracting text…';
 
     // Verify PDF.js is available
     if (typeof pdfjsLib === 'undefined') {
@@ -2978,8 +2985,8 @@ function parsePDF(file) {
         pagePromises.push(pdf.getPage(p).then(function(page) {
           return page.getTextContent({ includeMarkedContent: false }).then(function(tc) {
             // Build line-structured text using two signals:
-            //   1. item.hasEOL === true  ΓåÆ PDF.js v3 explicit line-end marker
-            //   2. significant Y-jump between consecutive items ΓåÆ new line
+            //   1. item.hasEOL === true  → PDF.js v3 explicit line-end marker
+            //   2. significant Y-jump between consecutive items → new line
             var lines = [];
             var currentLine = [];
             var prevY = null;
@@ -3022,13 +3029,13 @@ function parsePDF(file) {
 }
 
 function applyPdfGoals(text, resultEl, statusEl, barEl, msgEl) {
-  // ΓöÇΓöÇ SuccessFactors browser-print PDF structure ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── SuccessFactors browser-print PDF structure ──────────────
   // Header per goal:
   //   "Goal Plan:2026 Goal Plan Category:<cat> Owner:<name> Print Date:<date>"
   // followed by: Title, (Private), Updated, Status, <value>, Due Date, <date>, Description
   //
   // Strategy: flatten all text, split on "Goal Plan:" boundaries,
-  // extract each field via regex ΓÇö independent of line structure.
+  // extract each field via regex — independent of line structure.
 
   // Step 1: flatten
   var flat = text.replace(/\r/g, ' ').replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
@@ -3068,13 +3075,13 @@ function applyPdfGoals(text, resultEl, statusEl, barEl, msgEl) {
       .replace(/\s+/g, ' ')
       .trim();
 
-    // ΓöÇΓöÇ Title / Description split ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+    // ── Title / Description split ───────────────────────────────
     // In SuccessFactors print PDFs the title and description are separated
     // only by whitespace. The description always starts with an action verb
     // or a capital word that begins a full sentence.
     //
     // Split strategies (tried in order):
-    //  1. Closing bracket/paren ) followed by space + capital word  ΓåÆ title ends at )
+    //  1. Closing bracket/paren ) followed by space + capital word  → title ends at )
     //  2. Action-verb boundary: space + known verb at word boundary
     //  3. First ". " NOT inside brackets followed by capital word
     //  4. Double-space gap
@@ -3120,7 +3127,7 @@ function applyPdfGoals(text, resultEl, statusEl, barEl, msgEl) {
     }
   });
 
-  // ΓöÇΓöÇ Fill goal cards ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Fill goal cards ─────────────────────────────────────────
   var filled = 0;
   goals.slice(0, 5).forEach(function(goal, idx) {
     var i = idx + 1;
@@ -3187,7 +3194,7 @@ function applyPdfGoals(text, resultEl, statusEl, barEl, msgEl) {
   }
 }
 
-// ΓöÇΓöÇ Excel Import (Recognition) ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Excel Import (Recognition) ─────────────────────────────────
 function xlsDrop(e) {
   e.preventDefault();
   document.getElementById('xlszone').classList.remove('drag');
@@ -3211,7 +3218,7 @@ function parseExcel(file) {
   statusEl.classList.add('vis');
   resultEl.classList.remove('vis');
   barEl.style.width = '10%';
-  msgEl.textContent = 'Reading ExcelΓÇª';
+  msgEl.textContent = 'Reading Excel…';
 
   if (typeof XLSX === 'undefined') {
     statusEl.classList.remove('vis');
@@ -3222,7 +3229,7 @@ function parseExcel(file) {
   var reader = new FileReader();
   reader.onload = function(ev) {
     barEl.style.width = '50%';
-    msgEl.textContent = 'Parsing rowsΓÇª';
+    msgEl.textContent = 'Parsing rows…';
 
     try {
       var wb = XLSX.read(ev.target.result, { type: 'array' });
@@ -3238,19 +3245,19 @@ function parseExcel(file) {
 }
 
 function applyExcelRecognitions(ws, resultEl, statusEl, barEl, msgEl) {
-  // ΓöÇΓöÇ Your Excel layout (Recognition_2026_Summary.xlsx) ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Your Excel layout (Recognition_2026_Summary.xlsx) ──────
   // Each recognition block:
-  //   Row "RECOGNITION N"  ΓåÆ section marker  (col B)
+  //   Row "RECOGNITION N"  → section marker  (col B)
   //   "RECOGNISED BY" (B)  + "DATE" (E)
-  //   Value row            ΓåÆ B = name, E = date string (DD/MM/YYYY)
+  //   Value row            → B = name, E = date string (DD/MM/YYYY)
   //   "AWARD TYPE" (B)
-  //   Value row            ΓåÆ B = award text
+  //   Value row            → B = award text
   //   "MESSAGE / REASON FOR RECOGNITION" (B)
-  //   Value row            ΓåÆ B = message text
+  //   Value row            → B = message text
   //
   // Strategy: walk all cells in col B top-to-bottom tracking state machine.
 
-  // Build a rowΓåÆcolB and rowΓåÆcolE lookup from the sheet
+  // Build a row→colB and row→colE lookup from the sheet
   var colB = {}, colE = {};
   var ref = ws['!ref'];
   if (!ref) { toast('Empty sheet.', 'warn'); statusEl.classList.remove('vis'); return; }
@@ -3263,7 +3270,7 @@ function applyExcelRecognitions(ws, resultEl, statusEl, barEl, msgEl) {
     colE[r] = ce ? String(ce.v).trim() : '';
   }
 
-  // Walk rows ΓÇö state machine
+  // Walk rows — state machine
   var recs = [];
   var cur  = null;
   var state = ''; // 'by', 'type', 'msg'
@@ -3290,7 +3297,7 @@ function applyExcelRecognitions(ws, resultEl, statusEl, barEl, msgEl) {
   }
   if (cur) recs.push(cur);
 
-  // ΓöÇΓöÇ Fill recognition cards ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Fill recognition cards ──────────────────────────────────
   var filled = 0;
   recs.slice(0, 5).forEach(function(rec, idx) {
     var i = idx + 1;
@@ -3304,7 +3311,7 @@ function applyExcelRecognitions(ws, resultEl, statusEl, barEl, msgEl) {
     if (!typeEl.value && rec.type) { typeEl.value  = rec.type; }
     if (!msgEl2.value && rec.msg)  { msgEl2.value  = rec.msg;  }
 
-    // Convert DD/MM/YYYY ΓåÆ YYYY-MM-DD for date input
+    // Convert DD/MM/YYYY → YYYY-MM-DD for date input
     if (!dateEl.value && rec.date) {
       var dp = rec.date.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
       if (dp) dateEl.value = dp[3] + '-' + dp[2] + '-' + dp[1];
@@ -3336,26 +3343,26 @@ function applyExcelRecognitions(ws, resultEl, statusEl, barEl, msgEl) {
   }
 }
 
-// ΓöÇΓöÇ Feedback Smart Paste ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Feedback Smart Paste ────────────────────────────────────────
 function parseFeedbackPaste() {
   var raw = document.getElementById('fbpaste').value.trim();
   var resultEl = document.getElementById('fbpresult');
   resultEl.classList.remove('vis');
   if (!raw) { toast('Paste some feedback text first.', 'warn'); return; }
 
-  // ΓöÇΓöÇ SuccessFactors Feedback Details page ΓÇö copied text format ΓöÇ
+  // ── SuccessFactors Feedback Details page — copied text format ─
   //
   // When you do Ctrl+A + Ctrl+C on a Feedback Details page, the text is:
   //
-  //   Feedback / Feedback Details          ΓåÉ breadcrumb (skip)
-  //   Feedback Details                     ΓåÉ page title (skip)
-  //   <Sender Name>                        ΓåÉ FIRST meaningful line = name
-  //   <intro message text>                 ΓåÉ skip (not the feedback itself)
-  //   Feedback received on <Month D, YYYY> ΓåÉ date
-  //   Make visible to my manager:          ΓåÉ skip
-  //   Yes / No                             ΓåÉ skip
-  //   What went well?                      ΓåÉ section header
-  //   "<well text>"                        ΓåÉ content (may span multiple lines)
+  //   Feedback / Feedback Details          ← breadcrumb (skip)
+  //   Feedback Details                     ← page title (skip)
+  //   <Sender Name>                        ← FIRST meaningful line = name
+  //   <intro message text>                 ← skip (not the feedback itself)
+  //   Feedback received on <Month D, YYYY> ← date
+  //   Make visible to my manager:          ← skip
+  //   Yes / No                             ← skip
+  //   What went well?                      ← section header
+  //   "<well text>"                        ← content (may span multiple lines)
   //   What could be improved?
   //   "<improve text>"
   //   Any additional comments?
@@ -3369,7 +3376,7 @@ function parseFeedbackPaste() {
 
   var text = raw.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
 
-  // ΓöÇΓöÇ Pre-clean: strip browser/page chrome lines ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Pre-clean: strip browser/page chrome lines ───────────────
   // When Ctrl+A on a SuccessFactors page the IBM nav bar, breadcrumbs,
   // search bar, and other page furniture are captured. Remove them all
   // before any further processing.
@@ -3378,22 +3385,22 @@ function parseFeedbackPaste() {
     .map(function(l){ return l.trim(); })
     .filter(function(l){ return l.length > 0 && !chromeRx.test(l); });
 
-  // ΓöÇΓöÇ Helper: is a line a person's name? ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Helper: is a line a person's name? ──────────────────────
   function isName(l) {
     if (!l) return false;
     var s = l.replace(/\s*Avatar\s*$/i,'').trim();
-    return /^[A-Z][a-zA-Z├Ç-├┐'\-]+([ ][A-Z][a-zA-Z├Ç-├┐'\-]+){1,4}$/.test(s) &&
+    return /^[A-Z][a-zA-ZÀ-ÿ'\-]+([ ][A-Z][a-zA-ZÀ-ÿ'\-]+){1,4}$/.test(s) &&
       s.length < 60 && !/[?.!,;:\d]/.test(s) &&
       !/^(Feedback|What|Any|Make|Hide|View|Yes|No|Hi |I |Dear |Thank|Search|IBM)/i.test(s);
   }
 
-  // ΓöÇΓöÇ Step 1: find all "Feedback received on" line indices ΓöÇΓöÇΓöÇΓöÇ
+  // ── Step 1: find all "Feedback received on" line indices ────
   var dateLineIdxs = [];
   lines.forEach(function(l, i) {
     if (/^Feedback received on /i.test(l)) dateLineIdxs.push(i);
   });
 
-  // ΓöÇΓöÇ Step 2: for each date line, find the sender name ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Step 2: for each date line, find the sender name ────────
   var feedbackRanges = []; // [{nameIdx, dateIdx}]
   dateLineIdxs.forEach(function(di) {
     // Look back up to 15 lines for a name-like line
@@ -3418,7 +3425,7 @@ function parseFeedbackPaste() {
     });
   }
 
-  // ΓöÇΓöÇ Step 3: extract each feedback block ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Step 3: extract each feedback block ─────────────────────
   var feedbacks = [];
   // Residual noise that may survive the pre-clean (inside a block)
   var noiseRx = /^(Make visible to my manager[:\s]*|Yes|No|View more|Hide|Avatar|Feedback received on$)$/i;
@@ -3455,7 +3462,7 @@ function parseFeedbackPaste() {
 
       if (hasSFHeaders) {
         // SuccessFactors: bucket into sections
-        if (!state) return; // before first header ΓÇö skip
+        if (!state) return; // before first header — skip
         if (isName(content)) return;
         if      (state === 'well')    wellText    += (wellText    ? ' ' : '') + content;
         else if (state === 'improve') improveText += (improveText ? ' ' : '') + content;
@@ -3477,7 +3484,7 @@ function parseFeedbackPaste() {
     if (from || msg) feedbacks.push({ from: from, date: date, rel: '', msg: msg });
   });
 
-  // ΓöÇΓöÇ Fallback: no SuccessFactors date markers found at all ΓöÇΓöÇΓöÇΓöÇ
+  // ── Fallback: no SuccessFactors date markers found at all ────
   // Treat the entire pasted text as a single free-form feedback block.
   // Find the first name-like line as sender; everything after it is the message.
   if (feedbackRanges.length === 0 && raw.trim().length > 0) {
@@ -3507,7 +3514,7 @@ function parseFeedbackPaste() {
     if (senderLine || freeMsg) feedbacks.push({ from: senderLine, date: '', rel: '', msg: freeMsg });
   }
 
-  // ΓöÇΓöÇ Step 4: fill feedback cards ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Step 4: fill feedback cards ─────────────────────────────
   var filled = 0;
   var months = { january:'01',february:'02',march:'03',april:'04',may:'05',june:'06',
                  july:'07',august:'08',september:'09',october:'10',november:'11',december:'12' };
@@ -3521,7 +3528,7 @@ function parseFeedbackPaste() {
 
     if (!fromEl.value && fb.from) { fromEl.value = fb.from; filled++; }
     if (!msgEl.value  && fb.msg)    msgEl.value  = fb.msg;
-    // Relationship left blank ΓÇö user selects manually
+    // Relationship left blank — user selects manually
   });
 
   docRefreshView('fb');
@@ -3547,10 +3554,10 @@ function parseFeedbackPaste() {
   }
 }
 
-// ΓöÇΓöÇ Bind auto-save ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Bind auto-save ─────────────────────────────────────────────
 var _asBound = false;
 function bindAS() {
-  if (_asBound) return; // only bind once ΓÇö prevents duplicate listeners on re-login
+  if (_asBound) return; // only bind once — prevents duplicate listeners on re-login
   _asBound = true;
   document.addEventListener('input',function(e){ if(e.target.dataset.key) sched(); });
   document.addEventListener('change',function(e){ if(e.target.dataset.key) sched(); });
@@ -3561,7 +3568,7 @@ function bindAS() {
   });
 }
 
-// ΓöÇΓöÇ Outlook Query Chips ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Outlook Query Chips ────────────────────────────────────────
 var OLK_QUERIES = [
   'Scan my inbox and sent folder for emails showing completed projects or deliverables. Return JSON with: from, date, subject, body_summary, category.',
   'Find emails where I received praise, acknowledgements, or recognition from colleagues or managers.',
@@ -3578,7 +3585,7 @@ function buildOlkChips() {
   if (!cont) return;
   var h = '';
   OLK_QUERIES.forEach(function(q, idx) {
-    var short = q.length > 70 ? q.substring(0, 68) + 'ΓÇª' : q;
+    var short = q.length > 70 ? q.substring(0, 68) + '…' : q;
     h += '<button class="olk-query-chip" onclick="copyOlkQuery(' + idx + ',this)" title="' + q.replace(/"/g,'&quot;') + '">' +
       '&#128203; ' + short +
     '</button>';
@@ -3591,9 +3598,9 @@ function copyOlkQuery(idx, btn) {
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(q).then(function() {
       var orig = btn.textContent;
-      btn.textContent = 'Γ£ô Copied!';
-      setTimeout(function(){ btn.innerHTML = '&#128203; ' + (q.length > 68 ? q.substring(0,68)+'ΓÇª' : q); }, 1500);
-      toast('Query copied ΓÇö paste it into Copilot or Outlook!');
+      btn.textContent = '✓ Copied!';
+      setTimeout(function(){ btn.innerHTML = '&#128203; ' + (q.length > 68 ? q.substring(0,68)+'…' : q); }, 1500);
+      toast('Query copied — paste it into Copilot or Outlook!');
     });
   } else {
     // Fallback: put it in the paste area
@@ -3603,7 +3610,7 @@ function copyOlkQuery(idx, btn) {
   }
 }
 
-// ΓöÇΓöÇ Outlook JSON / Plain-text Paste Parser ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Outlook JSON / Plain-text Paste Parser ─────────────────────
 function parseOutlookPaste() {
   var raw = (document.getElementById('olk-paste').value || '').trim();
   var resultEl = document.getElementById('olk-parse-result');
@@ -3616,7 +3623,7 @@ function parseOutlookPaste() {
 
   var items = [];
 
-  // ΓöÇΓöÇ Try JSON first ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Try JSON first ───────────────────────────────────────────
   var jsonMatch = raw.match(/\[[\s\S]*\]/);
   if (jsonMatch) {
     try {
@@ -3635,7 +3642,7 @@ function parseOutlookPaste() {
     } catch(e) { /* fall through to plain text */ }
   }
 
-  // ΓöÇΓöÇ Plain text fallback ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Plain text fallback ──────────────────────────────────────
   if (items.length === 0) {
     items = parsePlainEmailText(raw);
   }
@@ -3645,7 +3652,7 @@ function parseOutlookPaste() {
     return;
   }
 
-  // ΓöÇΓöÇ Render evidence cards ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+  // ── Render evidence cards ────────────────────────────────────
   var h = '';
   items.forEach(function(item, idx) {
     var catClass = item.cat === 'Recognition' ? 'b-top' : item.cat === 'Feedback' ? 'b-core' : item.cat === 'Learning' ? 'b-none' : 'b-core';
@@ -3705,7 +3712,7 @@ function parsePlainEmailText(text) {
   return items;
 }
 
-// ΓöÇΓöÇ Apply a single email item to the dashboard tabs ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Apply a single email item to the dashboard tabs ────────────
 function applyEmailItem(idx, btn) {
   var item = (window._olkItems || [])[idx];
   if (!item) return;
@@ -3722,14 +3729,14 @@ function applyEmailItem(idx, btn) {
     applied = applyLrnItem(item);
     if (applied) toast('Learning item imported to Learning tab!');
   } else {
-    // Goal Evidence ΓÇö add to progress notes of first goal with matching title, else first empty
+    // Goal Evidence — add to progress notes of first goal with matching title, else first empty
     applied = applyGoalEvidence(item);
     if (applied) toast('Goal evidence added to Goals tab!');
   }
 
-  if (!applied) toast('All slots full ΓÇö check tabs for existing entries.', 'warn');
+  if (!applied) toast('All slots full — check tabs for existing entries.', 'warn');
   else {
-    btn.textContent = 'Γ£ô Applied';
+    btn.textContent = '✓ Applied';
     btn.classList.add('applied');
     sched();
   }
@@ -3817,7 +3824,7 @@ function applyGoalEvidence(item) {
   return false;
 }
 
-// ΓöÇΓöÇ Forward Email Parser (single email paste) ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Forward Email Parser (single email paste) ──────────────────
 function parseFwdEmail() {
   var raw = (document.getElementById('olk-fwd-paste').value || '').trim();
   var resultEl = document.getElementById('olk-fwd-result');
@@ -3854,18 +3861,23 @@ function parseFwdEmail() {
   sched();
 }
 
-// ΓöÇΓöÇ Init ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Init ───────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function() {
+  // If a valid session email is already stored, resume that session automatically
+  // (survives page refresh / GitHub Pages reload).
   var savedEmail = localStorage.getItem('ibm_perf_2026_session_email');
-  if (savedEmail) {
+  if (savedEmail && /^[^\s@]+@ibm\.com$/.test(savedEmail)) {
+    document.getElementById('login-email').value = savedEmail;
     startSession(savedEmail);
+    // Restore any files that were serialised to localStorage
+    restoreDocFiles();
   } else {
     document.getElementById('login-screen').classList.remove('hidden');
     setTimeout(function(){ document.getElementById('login-email').focus(); }, 100);
   }
 });
 
-// ΓöÇΓöÇ Debug panel ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Debug panel ────────────────────────────────────────────────
 function showDebug() {
   var lines = ['<b>PFX:</b> ' + PFX, '<b>SESSION KEY:</b> ' + (localStorage.getItem('ibm_perf_2026_session_email')||'(none)'), '<hr>'];
   var keys = Object.keys(localStorage).filter(function(k){ return k.startsWith('ibm_perf_2026_'); }).sort();
@@ -3875,75 +3887,100 @@ function showDebug() {
   w.document.write('<pre style="font:13px monospace;padding:16px;white-space:pre-wrap">' + lines.join('\n') + '</pre>');
 }
 
-// ΓöÇΓöÇ Gather Documentation ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Gather Documentation ────────────────────────────────────────
 // In-memory store: docFiles[slotId] = Array of File objects
 var docFiles = {};
-var FILE_SLOTS = ['df1','df2','df3','df4','df5'];
 
-// ── File Persistence: save file binary as base64 per user ───────
-function saveFilesToStorage(slotId) {
-  var files = docFiles[slotId] || [];
-  var prefix = PFX + 'file__' + slotId + '__';
-  Object.keys(localStorage).forEach(function(k){
-    if (k.indexOf(prefix) === 0) localStorage.removeItem(k);
-  });
-  localStorage.setItem(PFX + 'filecnt__' + slotId, String(files.length));
-  files.forEach(function(file, i) {
-    var reader = new FileReader();
-    reader.onload = function(e) {
-      try {
-        localStorage.setItem(prefix + i, JSON.stringify({
-          name: file.name, size: file.size, type: file.type || '', data: e.target.result
-        }));
-      } catch(err) {
-        try {
-          localStorage.setItem(prefix + i, JSON.stringify({
-            name: file.name, size: file.size, type: file.type || '', data: null
-          }));
-        } catch(e2) {}
-      }
-    };
-    reader.readAsDataURL(file);
-  });
-}
-
-function restoreFilesFromStorage(slotId, callback) {
-  var cnt = parseInt(localStorage.getItem(PFX + 'filecnt__' + slotId) || '0', 10);
-  if (cnt === 0) { if (callback) callback(); return; }
-  var prefix = PFX + 'file__' + slotId + '__';
-  var restored = new Array(cnt);
-  var pending = cnt;
-  for (var i = 0; i < cnt; i++) {
-    (function(idx) {
-      var raw = localStorage.getItem(prefix + idx);
-      if (!raw) { if (--pending === 0) { docFiles[slotId] = restored.filter(Boolean); renderDocList(slotId); if (callback) callback(); } return; }
-      try {
-        var meta = JSON.parse(raw);
-        if (meta.data) {
-          var byteStr = atob(meta.data.split(',')[1]);
-          var ab = new ArrayBuffer(byteStr.length);
-          var view = new Uint8Array(ab);
-          for (var b = 0; b < byteStr.length; b++) view[b] = byteStr.charCodeAt(b);
-          restored[idx] = new File([new Blob([ab], {type: meta.type || 'application/octet-stream'})], meta.name, {type: meta.type || ''});
-        } else {
-          restored[idx] = new File([new Blob([])], meta.name, {type: meta.type || ''});
+// ── File persistence helpers ────────────────────────────────────
+// Files are serialised as base64 into localStorage so they survive
+// page refresh and GitHub Pages reloads.  Each slot is stored under
+// PFX + 'docfiles_' + listId as a JSON array of {name,type,b64}.
+function saveDocFiles() {
+  var SLOTS = ['df1','df2','df3','df4','df5'];
+  SLOTS.forEach(function(listId) {
+    var files = docFiles[listId] || [];
+    if (files.length === 0) {
+      localStorage.removeItem(PFX + 'docfiles_' + listId);
+      return;
+    }
+    // Serialise synchronously using FileReaderSync is not available in main thread.
+    // We read all files in sequence and persist when the last one finishes.
+    var results = new Array(files.length);
+    var pending = files.length;
+    files.forEach(function(f, i) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        // e.target.result is a data URL: "data:<type>;base64,<b64>"
+        var b64 = e.target.result.split(',')[1] || '';
+        results[i] = { name: f.name, type: f.type, b64: b64, size: f.size };
+        pending--;
+        if (pending === 0) {
+          try {
+            localStorage.setItem(PFX + 'docfiles_' + listId, JSON.stringify(results));
+          } catch(e2) {
+            // QuotaExceededError — file too large for localStorage (5-10 MB limit)
+            toast('File saved in session but too large to persist across refreshes (browser storage limit). Text data is still saved.', 'warn');
+          }
         }
-      } catch(e) {}
-      if (--pending === 0) { docFiles[slotId] = restored.filter(Boolean); renderDocList(slotId); if (callback) callback(); }
-    })(i);
-  }
+      };
+      reader.onerror = function() {
+        results[i] = null; pending--;
+        if (pending === 0) {
+          var valid = results.filter(Boolean);
+          if (valid.length) {
+            try { localStorage.setItem(PFX + 'docfiles_' + listId, JSON.stringify(valid)); } catch(e3){}
+          }
+        }
+      };
+      reader.readAsDataURL(f);
+    });
+  });
 }
 
-function restoreAllFilesFromStorage(allDone) {
-  var remaining = FILE_SLOTS.length;
-  function done() { if (--remaining === 0 && allDone) allDone(); }
-  FILE_SLOTS.forEach(function(s) { restoreFilesFromStorage(s, done); });
+// Reconstruct File objects from base64-serialised localStorage entries
+function restoreDocFiles() {
+  var SLOTS = ['df1','df2','df3','df4','df5'];
+  SLOTS.forEach(function(listId) {
+    var raw = localStorage.getItem(PFX + 'docfiles_' + listId);
+    if (!raw) return;
+    try {
+      var arr = JSON.parse(raw);
+      if (!Array.isArray(arr) || arr.length === 0) return;
+      docFiles[listId] = arr.map(function(item) {
+        if (!item || !item.b64) return null;
+        try {
+          var byteStr = atob(item.b64);
+          var ab = new ArrayBuffer(byteStr.length);
+          var ua = new Uint8Array(ab);
+          for (var j = 0; j < byteStr.length; j++) ua[j] = byteStr.charCodeAt(j);
+          return new File([ab], item.name, { type: item.type });
+        } catch(e) { return null; }
+      }).filter(Boolean);
+      renderDocList(listId);
+      var slotMap = { 'df1':'1','df2':'2','df3':'3','df4':'4','df5':'5' };
+      if (slotMap[listId]) docRefreshView(slotMap[listId]);
+    } catch(e) {}
+  });
+  // Update the GPA parse status if df1 has a file
+  var gpaFile = (docFiles['df1'] || [])[0];
+  if (gpaFile) {
+    var statusEl = document.getElementById('gpa-upload-status');
+    if (statusEl) {
+      statusEl.style.display = 'block';
+      statusEl.style.background = '#d3f9d8';
+      statusEl.style.border = '1.5px solid #74c69d';
+      statusEl.style.color = '#1a5c2a';
+      statusEl.innerHTML = '&#10003; <strong>' + esc(gpaFile.name) + '</strong> restored from saved session. Click <strong>&#10024; Analyse &amp; Populate</strong> to re-run extraction.';
+    }
+    var d7 = document.getElementById('d7');
+    if (d7) d7.classList.add('go');
+  }
 }
 
 function docPick(evt, listId, zoneId) {
   var files = Array.prototype.slice.call(evt.target.files);
   addDocFiles(listId, zoneId, files);
-  evt.target.value = '';
+  evt.target.value = ''; // reset so same file can be re-added
 }
 
 function docDrop(evt, listId, zoneId) {
@@ -3957,20 +3994,24 @@ function addDocFiles(listId, zoneId, files) {
   if (!docFiles[listId]) docFiles[listId] = [];
   files.forEach(function(f) { docFiles[listId].push(f); });
   renderDocList(listId);
-  saveFilesToStorage(listId);
+  // Refresh view strip for the slot
   var slotMap = { 'df1':'1','df2':'2','df3':'3','df4':'4','df5':'5' };
   if (slotMap[listId]) docRefreshView(slotMap[listId]);
+  // dot for tab 7
   var d7 = document.getElementById('d7');
   if (d7) {
     var hasAny = Object.keys(docFiles).some(function(k){ return docFiles[k] && docFiles[k].length > 0; });
     d7.classList.toggle('go', hasAny);
   }
+  // Persist files to localStorage
+  saveDocFiles();
 }
 
 function removeDocFile(listId, idx) {
   if (docFiles[listId]) docFiles[listId].splice(idx, 1);
   renderDocList(listId);
-  saveFilesToStorage(listId);
+  // Persist updated list
+  saveDocFiles();
 }
 
 function renderDocList(listId) {
@@ -3999,7 +4040,7 @@ function fileIcon(name) {
   return '&#128196;';
 }
 
-// ΓöÇΓöÇ Gather Documentation ΓÇö Edit / Save / View ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Gather Documentation — Edit / Save / View ──────────────────
 // docToggleEdit(slotId): toggle edit mode for a card.
 // slotId is one of: 'ei','0','1','lh','2','3','4','5'
 var docEditState = {};  // tracks which slots are in edit mode
@@ -4010,33 +4051,33 @@ function docToggleEdit(slotId) {
   var hdrBtn    = document.getElementById('deb_'  + slotId);
 
   if (!isEditing) {
-    // Enter edit mode ΓÇö form already visible (starts .on), just update header button
+    // Enter edit mode — form already visible (starts .on), just update header button
     if (formArea) formArea.classList.add('on');
-    if (hdrBtn)  { hdrBtn.textContent = 'EditingΓÇª'; hdrBtn.classList.add('is-save'); }
+    if (hdrBtn)  { hdrBtn.textContent = 'Editing…'; hdrBtn.classList.add('is-save'); }
     docEditState[slotId] = true;
     // Sync page button: if any slot is editing, show Save All
     docSyncPageBtn();
   } else {
-    // Save ΓÇö refresh view strip, collapse form, reset header button
+    // Save — refresh view strip, collapse form, reset header button
     docRefreshView(slotId);
     if (formArea) formArea.classList.remove('on');
     if (hdrBtn)  { hdrBtn.textContent = 'Edit'; hdrBtn.classList.remove('is-save'); }
     docEditState[slotId] = false;
     sched();
-    toast('Saved ΓÇö ' + docSlotLabel(slotId));
+    toast('Saved — ' + docSlotLabel(slotId));
     // Sync page button: if no slots are editing, revert to Edit All
     docSyncPageBtn();
   }
 }
 
-// ΓöÇΓöÇ Page-level Save All for Gather Documentation ΓöÇΓöÇΓöÇ
+// ── Page-level Save All for Gather Documentation ───
 var DOC_SLOTS = ['ei','1','rec','fb','lh','2','3','4','5'];
 var docPageEditing = true;
 
 function docSyncPageBtn() { /* no-op: button is always Save All */ }
 
 function docToggleEditAll() {
-  // Save All ΓÇö flush to localStorage
+  // Save All — flush to localStorage
   DOC_SLOTS.forEach(function(slotId) {
     docRefreshView(slotId);
   });
@@ -4044,7 +4085,7 @@ function docToggleEditAll() {
   toast('All sections saved.');
 }
 
-// Lock/unlock a doc card using CSS class ΓÇö inputs stay enabled in DOM for save/restore
+// Lock/unlock a doc card using CSS class — inputs stay enabled in DOM for save/restore
 function docSetLocked(slotId, locked) {
   var area = document.getElementById('dfa_' + slotId);
   if (!area) return;
@@ -4099,7 +4140,7 @@ function docRefreshView(slotId) {
     var nt   = (document.getElementById('dnotes_lh') || {}).value || '';
     if (hrs)  items.push(hrs + ' hrs');
     if (bdg)  items.push(bdg + ' badges');
-    if (nt)   items.push(nt.substring(0, 60) + (nt.length > 60 ? 'ΓÇª' : ''));
+    if (nt)   items.push(nt.substring(0, 60) + (nt.length > 60 ? '…' : ''));
   } else {
     // File-based slots
     var listId = 'df' + slotId;
@@ -4107,7 +4148,7 @@ function docRefreshView(slotId) {
     files.forEach(function(f){ items.push(f.name); });
     var notesEl = document.getElementById('dnotes_' + slotId);
     var nt2 = notesEl ? notesEl.value.trim() : '';
-    if (nt2) items.push(nt2.substring(0, 80) + (nt2.length > 80 ? 'ΓÇª' : ''));
+    if (nt2) items.push(nt2.substring(0, 80) + (nt2.length > 80 ? '…' : ''));
   }
 
   if (items.length === 0) {
@@ -4123,15 +4164,14 @@ function docRefreshView(slotId) {
   }
 }
 
-// ΓöÇΓöÇ Goal Plan & Achievements upload handler ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Goal Plan & Achievements upload handler ─────────────────────
 // Handles the Excel file upload: stores the file in df1, then:
-//   1. Auto-parses the "Recognition & Awards" tab ΓåÆ fills Recognition cards in Summary
-// ΓöÇΓöÇ Shared helper: store GPA file and trigger parse ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+//   1. Auto-parses the "Recognition & Awards" tab → fills Recognition cards in Summary
+// ── Shared helper: store GPA file and trigger parse ─────────────
 function _storeAndParseGpa(xlsFile) {
   docFiles['df1'] = [xlsFile];
   renderDocList('df1');
   docRefreshView('1');
-  saveFilesToStorage('df1');
   var d7 = document.getElementById('d7');
   if (d7) d7.classList.add('go');
 
@@ -4143,7 +4183,7 @@ function _storeAndParseGpa(xlsFile) {
     statusEl.style.background = '#f0f2ff';
     statusEl.style.border = '1.5px solid #c0c8f0';
     statusEl.style.color = '#3b5bdb';
-    statusEl.innerHTML = '&#8987; Reading <strong>' + esc(xlsFile.name) + '</strong>ΓÇª';
+    statusEl.innerHTML = '&#8987; Reading <strong>' + esc(xlsFile.name) + '</strong>…';
   }
   if (debugBtn)     debugBtn.style.display     = 'inline-block';
   if (reprocessBtn) reprocessBtn.style.display = 'inline-block';
@@ -4174,7 +4214,7 @@ function docPickGpa(evt, listId, zoneId) {
   _storeAndParseGpa(xlsFile);
 }
 
-// ΓöÇΓöÇ Drag-drop handler for GPA zone (fixes missing recognition parse on drop) ΓöÇ
+// ── Drag-drop handler for GPA zone (fixes missing recognition parse on drop) ─
 function docDropGpa(evt, listId, zoneId) {
   evt.preventDefault();
   var zone = document.getElementById(zoneId);
@@ -4185,7 +4225,7 @@ function docDropGpa(evt, listId, zoneId) {
   _storeAndParseGpa(xlsFile);
 }
 
-// ΓöÇΓöÇ Re-process button: re-runs parser on already-stored file ΓöÇΓöÇΓöÇΓöÇ
+// ── Re-process button: re-runs parser on already-stored file ────
 function reprocessGpaExcel() {
   var file = (docFiles['df1'] || [])[0];
   if (!file) { toast('No file stored. Please upload the Excel file first.', 'warn'); return; }
@@ -4202,7 +4242,7 @@ function reprocessGpaExcel() {
     statusEl.style.background = '#f0f2ff';
     statusEl.style.border = '1.5px solid #c0c8f0';
     statusEl.style.color = '#3b5bdb';
-    statusEl.innerHTML = '&#8987; Re-processing <strong>' + esc(file.name) + '</strong>ΓÇª';
+    statusEl.innerHTML = '&#8987; Re-processing <strong>' + esc(file.name) + '</strong>…';
   }
   parseRecognitionFromGpa(file, function(result) {
     if (statusEl) {
@@ -4221,13 +4261,13 @@ function reprocessGpaExcel() {
   });
 }
 
-// ΓöÇΓöÇ Debug: dump Excel structure INLINE (popup-blocker safe) ΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Debug: dump Excel structure INLINE (popup-blocker safe) ─────
 function debugGpaExcel() {
   var file = (docFiles['df1'] || [])[0];
   if (!file) { toast('No file uploaded yet.', 'warn'); return; }
   if (typeof XLSX === 'undefined') { toast('SheetJS not loaded.', 'warn'); return; }
   var inlineEl = document.getElementById('gpa-debug-inline');
-  if (inlineEl) { inlineEl.style.display = 'block'; inlineEl.textContent = 'ReadingΓÇª'; }
+  if (inlineEl) { inlineEl.style.display = 'block'; inlineEl.textContent = 'Reading…'; }
   var reader = new FileReader();
   reader.onload = function(e) {
     try {
@@ -4236,7 +4276,7 @@ function debugGpaExcel() {
       lines.push('SHEET NAMES: ' + wb.SheetNames.map(function(s,i){ return i+':"'+s+'"'; }).join('  |  '));
       wb.SheetNames.forEach(function(sn) {
         lines.push('');
-        lines.push('ΓòÉΓòÉ SHEET: "' + sn + '" ΓòÉΓòÉ');
+        lines.push('══ SHEET: "' + sn + '" ══');
         var ws = wb.Sheets[sn];
         var rows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '', raw: false });
         lines.push('Rows: ' + rows.length);
@@ -4252,7 +4292,7 @@ function debugGpaExcel() {
         var w = window.open('','_xlsdebug','width=900,height=500,scrollbars=yes');
         if (w) { w.document.write('<pre style="font:13px monospace;padding:16px;white-space:pre-wrap">'+out+'</pre>'); }
       } catch(e2){}
-      toast('Excel structure loaded ΓÇö see the debug panel below the buttons.');
+      toast('Excel structure loaded — see the debug panel below the buttons.');
     } catch(err) {
       if (inlineEl) inlineEl.textContent = 'Error: ' + err.message;
       toast('Debug error: ' + err.message, 'warn');
@@ -4261,15 +4301,15 @@ function debugGpaExcel() {
   reader.readAsArrayBuffer(file);
 }
 
-// ΓöÇΓöÇ Copy Copilot Prompt ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Copy Copilot Prompt ──────────────────────────────────────────
 function copyGpaPrompt(btn) {
   var el = document.getElementById('copilot-prompt-text');
   var text = el ? el.textContent : '';
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(text).then(function() {
-      btn.textContent = 'Γ£ô Copied!';
+      btn.textContent = '✓ Copied!';
       setTimeout(function(){ btn.innerHTML = '&#128203; Copy Prompt'; }, 2000);
-      toast('Copilot prompt copied ΓÇö paste it into Outlook Copilot!');
+      toast('Copilot prompt copied — paste it into Outlook Copilot!');
     });
   } else {
     // Fallback: select the text
@@ -4282,19 +4322,19 @@ function copyGpaPrompt(btn) {
   }
 }
 
-// ΓöÇΓöÇ Parse "Recognition & Awards" tab from the GPA Excel ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Parse "Recognition & Awards" tab from the GPA Excel ─────────
 // Handles both layouts Copilot can produce:
-//   A) Table-view  ΓÇö a header row followed by data rows (most common)
-//   B) Form-view   ΓÇö label/value pairs scattered across rows and columns
+//   A) Table-view  — a header row followed by data rows (most common)
+//   B) Form-view   — label/value pairs scattered across rows and columns
 // Also handles:
-//   ΓÇó Excel serial date numbers (not just string dates)
-//   ΓÇó Case-insensitive tab name matching
-//   ΓÇó Blank rows / merged cell artefacts
-//   ΓÇó Up to 10 recognitions (fills first 5 cards)
+//   • Excel serial date numbers (not just string dates)
+//   • Case-insensitive tab name matching
+//   • Blank rows / merged cell artefacts
+//   • Up to 10 recognitions (fills first 5 cards)
 function parseRecognitionFromGpa(file, callback) {
   var cb = callback || function(){};
   if (typeof XLSX === 'undefined') {
-    toast('SheetJS library not loaded ΓÇö cannot read Excel file.', 'warn');
+    toast('SheetJS library not loaded — cannot read Excel file.', 'warn');
     cb({ filled: 0, sheetName: '' }); return;
   }
   var reader = new FileReader();
@@ -4306,8 +4346,8 @@ function parseRecognitionFromGpa(file, callback) {
         dateNF: 'yyyy-mm-dd'
       });
 
-      // ΓöÇΓöÇ 1. Locate the Recognition & Awards sheet ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
-      // Try every sheet name ΓÇö match "recogni" OR "award" case-insensitively,
+      // ── 1. Locate the Recognition & Awards sheet ───────────────
+      // Try every sheet name — match "recogni" OR "award" case-insensitively,
       // stripping all non-alphanumeric chars so "&", spaces, hyphens don't matter.
       var recSheet = null;
       var recSheetName = '';
@@ -4338,7 +4378,7 @@ function parseRecognitionFromGpa(file, callback) {
         cb({ filled: 0, sheetName: '' }); return;
       }
 
-      // ΓöÇΓöÇ 2. Extract all rows as raw arrays ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+      // ── 2. Extract all rows as raw arrays ─────────────────────
       var rows = XLSX.utils.sheet_to_json(recSheet, {
         header: 1,
         defval: '',
@@ -4368,7 +4408,7 @@ function parseRecognitionFromGpa(file, callback) {
         return s;
       }
 
-      // ΓöÇΓöÇ 3. Try TABLE-VIEW layout first ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+      // ── 3. Try TABLE-VIEW layout first ─────────────────────────
       // Look for a header row containing at least two of the expected column keywords
       var recs = [];
       var headerRowIdx = -1;
@@ -4416,7 +4456,7 @@ function parseRecognitionFromGpa(file, callback) {
         }
       }
 
-      // ΓöÇΓöÇ 4. FORM-VIEW fallback ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+      // ── 4. FORM-VIEW fallback ──────────────────────────────────
       // Scans every row for cells that look like field labels, then
       // reads the value from the same row (next non-empty cell) or next row.
       if (recs.length === 0) {
@@ -4489,7 +4529,7 @@ function parseRecognitionFromGpa(file, callback) {
         if (cur && (cur.by || cur.msg)) recs.push(cur);
       }
 
-      // ΓöÇΓöÇ 5. COLUMN-SCAN fallback ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+      // ── 5. COLUMN-SCAN fallback ────────────────────────────────
       // Last resort: flatten the entire sheet into readable text and
       // look for consecutive non-empty rows that form a recognizable pattern.
       if (recs.length === 0) {
@@ -4512,7 +4552,7 @@ function parseRecognitionFromGpa(file, callback) {
         });
       }
 
-      // ΓöÇΓöÇ 6. Fill recognition cards ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+      // ── 6. Fill recognition cards ──────────────────────────────
       if (recs.length === 0) {
         toast('Recognition & Awards tab found but could not detect any records. Use &#128270; Inspect Excel Structure to diagnose.', 'warn');
         cb({ filled: 0, sheetName: recSheetName }); return;
@@ -4537,7 +4577,7 @@ function parseRecognitionFromGpa(file, callback) {
         });
       });
 
-      // ΓöÇΓöÇ 7. Update UI state ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+      // ── 7. Update UI state ─────────────────────────────────────
       var noteEl  = document.getElementById('rec-autolink-note');
       var emptyEl = document.getElementById('rec-empty-note');
       if (filled > 0) {
@@ -4570,7 +4610,7 @@ function initDocCards() {
   });
 }
 
-// ΓöÇΓöÇ Login / Session ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+// ── Login / Session ────────────────────────────────────────────
 var SESSION_KEY = 'ibm_perf_2026_session_email';
 
 function doLogin() {
@@ -4589,6 +4629,8 @@ function doLogin() {
   // Persist session
   localStorage.setItem(SESSION_KEY, email);
   startSession(email);
+  // Restore any files serialised from a previous session with this email
+  restoreDocFiles();
 }
 
 function startSession(email) {
@@ -4604,24 +4646,12 @@ function startSession(email) {
   document.getElementById('login-screen').classList.add('hidden');
   document.getElementById('app').classList.add('visible');
 
+  // Boot dashboard with this user's saved data
   buildGoals(); buildRec(); buildFb(); buildLrn();
   buildOlkChips();
   bindAS();
-  initDocCards();
-  restoreAll();
-
-  restoreAllFilesFromStorage(function() {
-    var slotMap = { 'df1':'1','df2':'2','df3':'3','df4':'4','df5':'5' };
-    FILE_SLOTS.forEach(function(s) { if (slotMap[s]) docRefreshView(slotMap[s]); });
-    var d7 = document.getElementById('d7');
-    if (d7) {
-      var hasAny = FILE_SLOTS.some(function(s){ return docFiles[s] && docFiles[s].length > 0; });
-      d7.classList.toggle('go', hasAny);
-    }
-    var total = FILE_SLOTS.reduce(function(n,s){ return n + ((docFiles[s]||[]).length); }, 0);
-    if (total > 0) toast('Workspace restored \u2014 ' + total + ' file' + (total > 1 ? 's' : '') + ' reloaded.');
-  });
-
+  initDocCards();   // lock fields first — then restore fills values into locked fields
+  restoreAll();     // restoreAll runs after locking so values are always written
   document.querySelectorAll('.ms').forEach(function(s){ s.classList.remove('vis'); });
   var moeEl = document.getElementById('moe');
   if (moeEl) moeEl.style.display = 'none';
@@ -4631,8 +4661,14 @@ function startSession(email) {
 function doSignOut() {
   if (!confirm('Sign out? Your data is saved and will be waiting when you sign back in.')) return;
   localStorage.removeItem(SESSION_KEY);
+  // Reset PFX so no stale writes happen
   PFX = 'ibm_perf_2026_';
+  // Clear in-memory file store so a different user starts clean
   docFiles = {};
+  ['df1','df2','df3','df4','df5'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (el) el.innerHTML = '';
+  });
   document.getElementById('app').classList.remove('visible');
   document.getElementById('login-screen').classList.remove('hidden');
   document.getElementById('login-email').value = '';
